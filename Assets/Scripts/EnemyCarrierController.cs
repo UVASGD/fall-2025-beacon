@@ -33,7 +33,7 @@ public class EnemyCarrierController : MonoBehaviour
 
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
         float actualEngageRadius = engageRadius;
-        if (target == EarthController.Singleton.transform) {
+        if (target == HomePlanetController.Singleton.transform) {
             //Continue flying on outskirts
         }
         else
@@ -65,7 +65,7 @@ public class EnemyCarrierController : MonoBehaviour
         Collider[] hits = Physics.OverlapSphere(transform.position, aggroRadius, targetableLayers);
         if (hits.Length == 0)
         {
-            target = EarthController.Singleton.transform;
+            target = HomePlanetController.Singleton.transform;
         }
         else
         {
@@ -87,7 +87,7 @@ public class EnemyCarrierController : MonoBehaviour
             }
             else
             {
-                target = EarthController.Singleton.transform;
+                target = HomePlanetController.Singleton.transform;
             }
         }
     }

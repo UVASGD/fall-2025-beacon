@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LoseManager : MonoBehaviour
 {
-    public EarthHealth earthHealth;
+    public PlanetaryHealth earthHealth;
     public GameObject loseScreen;
 
     public delegate void Simple();

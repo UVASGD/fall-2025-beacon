@@ -17,7 +17,7 @@ public class CarrierMovementController : MonoBehaviour
 
     void Start()
     {
-        centerPoint = EarthController.Singleton.transform;
+        centerPoint = HomePlanetController.Singleton.transform;
         PickNewTargetPosition();
     }
 

@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
 
         float distanceToTarget = Vector3.Distance(transform.position, target.position);
         float actualEngageRadius = engageRadius;
-        if (target == EarthController.Singleton.transform) { actualEngageRadius += 5; }
+        if (target == HomePlanetController.Singleton.transform) { actualEngageRadius += 5; }
 
         if(distanceToTarget < actualEngageRadius)
         {
@@ -66,7 +66,7 @@ public class EnemyController : MonoBehaviour
         Collider[] hits = Physics.OverlapSphere(transform.position, aggroRadius, targetableLayers);
         if(hits.Length == 0)
         {
-            target = EarthController.Singleton.transform;
+            target = HomePlanetController.Singleton.transform;
         }
         else
         {
@@ -88,7 +88,7 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                target = EarthController.Singleton.transform;
+                target = HomePlanetController.Singleton.transform;
             }
         }
         weaponController.target = target;
