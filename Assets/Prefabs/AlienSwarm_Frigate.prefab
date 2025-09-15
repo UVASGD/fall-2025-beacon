@@ -275,7 +275,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 40
-  range: 2
   damage: 10
   fireRate: 1
   firePoints:
@@ -319,6 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
+  defeatBonus: 5
 --- !u!1 &5269725079870255406
 GameObject:
   m_ObjectHideFlags: 0

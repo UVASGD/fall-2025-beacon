@@ -8,6 +8,7 @@ public class HomePlanetController : MonoBehaviour
     public static HomePlanetController Singleton;
     [SerializeField] SpriteRenderer planetaryGraphics;
     [SerializeField] PlanetaryHealth planetaryHealth;
+    [SerializeField] PlanetIncome planetIncome;
 
     private void Awake()
     {
