@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerBuildings : MonoBehaviour
 {
-    public List<Building> initialBuildings;
+    private List<Building> initialBuildings; //set to private for better encapsulation. Please change value through SetInitialBuidlings
     public BuildingButtonGenerator buttonGenerator;
 
     [SerializeField]
     private List<Building> buildings = new List<Building>();
 
-    private void Awake()
+    void Start()
     {
-        foreach(var building in initialBuildings)
+        foreach (var building in initialBuildings) //moved this foreach from Awake to Start
         {
             AddBuilding(building);
         }
@@ -33,5 +33,10 @@ public class PlayerBuildings : MonoBehaviour
     public Building GetBuilding(int index)
     {
         return buildings[index];
+    }
+
+    public void SetInitialBuildings(List<Building> initial)
+    {
+        initialBuildings = initial;
     }
 }

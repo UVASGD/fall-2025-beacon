@@ -5,9 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [SerializeField] FactionSelectionMenu factionSelectionMenu;
     public void PlayPressed()
     {
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        factionSelectionMenu.gameObject.SetActive(true);
+        factionSelectionMenu.SpawnFactionIcons(FactionManager.i.ReturnFactionList());
+    }
+
+    public void OnCampaignStart()
+    {
+        //SceneManager.LoadScene("SampleScene", LoadSceneMode.Single); loading scene by string is terrifying. Please load by build menu ID for if/when we rename scenes for build
+        //As punishment, I am leaving that commented for everyone to see. -David
+
+        FactionManager.i.PrepGameplayFactions();
+        
+        SceneManager.LoadScene(1);
     }
 
     public void ExitPressed()
