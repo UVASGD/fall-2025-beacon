@@ -8,14 +8,40 @@ public class BuildingHealth : MonoBehaviour, IHealth
     private float health = 100;
     [SerializeField] 
     private float maxHealth = 100;
-    public float GetHealth()
+    private float baseMaxHealth;
+
+    void Awake()
     {
-        return health;
+        baseMaxHealth = maxHealth;
+        ApplyRelicHp();
+
+        if (RelicManager.Singleton != null)
+            RelicManager.Singleton.OnRelicsChanged += ApplyRelicHp;
     }
 
-    public void ChangeHealth(float change)
+    void OnDestroy()
     {
-        health += change;
-        health = Mathf.Clamp(health, 0, maxHealth);
+        if (RelicManager.Singleton != null)
+            RelicManager.Singleton.OnRelicsChanged -= ApplyRelicHp;
+    }
+
+    private void ApplyRelicHp()
+    {
+        float oldMax = maxHealth;
+        float ratio = (oldMax > 0f) ? (health / oldMax) : 1f;
+
+        if (RelicManager.Singleton != null)
+            maxHealth = RelicManager.Singleton.Apply(baseMaxHealth, StatType.MaxHealth);
+        else
+            maxHealth = baseMaxHealth;
+
+        health = Mathf.Clamp(maxHealth * ratio, 0f, maxHealth);
+    }
+
+    public float GetHealth() => health;
+
+    public void ChangeHealth(float delta)
+    {
+        health = Mathf.Clamp(health + delta, 0, maxHealth);
     }
 }
