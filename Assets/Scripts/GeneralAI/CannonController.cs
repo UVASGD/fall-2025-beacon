@@ -52,19 +52,34 @@ public class CannonController : MonoBehaviour
         direction.y = 0;
         turretHead.rotation = Quaternion.LookRotation(direction);
 
-        if (Vector3.Distance(target.position, transform.position) < range + 0.01f)
+        float effectiveRange = range;
+        if (RelicManager.Singleton != null)
+            effectiveRange = RelicManager.Singleton.Apply(range, StatType.Range);
+
+        if (Vector3.Distance(target.position, transform.position) < effectiveRange + 0.01f)
             FireProjectiles();
     }
 
     private void FireProjectiles() //Instantites and encodes a projectile at each firePoint. Encodes projectile stats and target to home to.
     {
+        float effSpeed = speed;
+        float effDamage = damageController.damage;
+        float effFireRate = fireRate;
+
+        if (RelicManager.Singleton != null)
+        {
+            effSpeed = RelicManager.Singleton.Apply(speed, StatType.ProjectileSpeed);
+            effDamage = RelicManager.Singleton.Apply(damageController.damage, StatType.Damage);
+            effFireRate = RelicManager.Singleton.Apply(fireRate, StatType.FireRate);
+        }
+
         foreach (Transform firePoint in firePoints)
         {
             GameObject newProjectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-            newProjectile.GetComponent<ProjectileController>().Initialize(target, speed, damageController.damage);
+            newProjectile.GetComponent<ProjectileController>().Initialize(target, effSpeed, effDamage);
         }
 
-        cooldown = 1 / fireRate;
+        cooldown = 1f / Mathf.Max(0.0001f, effFireRate);
     }
 
     private void OnLevelUp()
