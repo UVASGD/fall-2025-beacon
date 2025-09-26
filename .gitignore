@@ -57,3 +57,14 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+# Local editor prefs (per-dev; don’t version)
+UserSettings/
+
+# VS Code / JetBrains project folders (optional to ignore)
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
