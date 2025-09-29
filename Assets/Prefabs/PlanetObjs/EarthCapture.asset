@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39d74fd3e32e85c4499214c772ab1d31, type: 3}
-  m_Name: Earth
+  m_Script: {fileID: 11500000, guid: 5562707ca42564d4e94da8ac53dd0a29, type: 3}
+  m_Name: EarthCapture
   m_EditorClassIdentifier: 
-  basePlanetSprites:
-  - {fileID: 21300000, guid: 108a9fb48f4a69942b4f1e58e1a536e5, type: 3}
-  maxPlanetHealth: 1000
+  meanCaptureChance: 0.8
+  captureDeviation: 0.1
+  meanBodySize: 50
+  sizeDeviation: 1
