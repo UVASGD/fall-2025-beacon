@@ -33,11 +33,22 @@ public class ShopManager : MonoBehaviour
     List<Building> GenerateBuildingsForShop()
     {
         List<Building> returnList = new List<Building>();
-        for(int i = 0; i < buildingsInShopCount; i++)
+
+        // Show all available faction buildings instead of random selection
+        if (possibleBuildings != null && possibleBuildings.Count > 0)
         {
-            returnList.Add(possibleBuildings[Random.Range(0, possibleBuildings.Count)]);
+            // Add all faction buildings to the shop
+            foreach (Building building in possibleBuildings)
+            {
+                returnList.Add(building);
+            }
         }
-        return returnList;  
+        else
+        {
+            Debug.LogWarning("No faction buildings available for shop!");
+        }
+
+        return returnList;
     }
 
     public void CloseShop()
