@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1739,6 +1739,7 @@ Transform:
   - {fileID: 1878404941}
   - {fileID: 293686610}
   - {fileID: 2067729081}
+  - {fileID: 1962033999}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &697041740
@@ -2013,6 +2014,7 @@ GameObject:
   - component: {fileID: 710189777}
   - component: {fileID: 710189779}
   - component: {fileID: 710189780}
+  - component: {fileID: 710189781}
   m_Layer: 0
   m_Name: PlayerManagers
   m_TagString: Untagged
@@ -2032,7 +2034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ec5b429bd423c40a989d78cca57762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonGenerator: {fileID: 951296756}
+  buttonGenerator: {fileID: 710189781}
   buildings: []
 --- !u!4 &710189778
 Transform:
@@ -2082,6 +2084,20 @@ MonoBehaviour:
   taxedPlanets:
   - {fileID: 1516526868}
   earnedMoneyUI: {fileID: 1739057615}
+--- !u!114 &710189781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710189776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db3165bea5cb90943886148ebe05d0e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonTemplatePrefab: {fileID: 420851640}
+  playerPlacing: {fileID: 710189779}
 --- !u!1 &747051996
 GameObject:
   m_ObjectHideFlags: 0
@@ -2967,6 +2983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonTemplatePrefab: {fileID: 335418272}
+  buttonContainer: {fileID: 0}
   playerPlacing: {fileID: 710189779}
 --- !u!1 &956333244
 GameObject:
@@ -5651,6 +5668,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 692918415}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1962033998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1962033999}
+  - component: {fileID: 1962034000}
+  m_Layer: 0
+  m_Name: RelicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1962033999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962033998}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 692918415}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1962034000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962033998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a40de4a8a5c2e409bcc4ed4b2fc476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runId: 1
+  stageIndex: 0
+  itemLevel: 1
+  autoGatherBuildingTags: 0
+  extraRunTags: 0
+  incrementStageOnWaveFinish: 1
+  offerEveryNWaves: 1
+  choicesPerOffer: 3
+  affixCountRange: {x: 1, y: 2}
+  classDefs: []
+  genericAffixes: []
+  legendaryDefs: []
+  wCommon: 60
+  wUncommon: 25
+  wRare: 12
+  wEpic: 3
+  wLegendary: 1
 --- !u!1 &1971156529
 GameObject:
   m_ObjectHideFlags: 0
