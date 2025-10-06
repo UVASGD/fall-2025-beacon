@@ -3,42 +3,79 @@ using System.Runtime.CompilerServices;
 
 namespace Beacon.ProcGen
 {
-    /// Deterministic RNG:
-    /// - Stream RNG (PCG32)
-    /// - Stateless hash-per-ID helpers
+
+    /// <summary>
+    /// Deterministic RNG building blocks for procgen.
+    /// Combines a PCG32 stream RNG (stateful) with stateless hash-based helpers.
+    /// Use SeedRegistry.SubSeed(...) to derive per-system seeds.
+    /// Streams give reproducible sequences; hashed helpers give random-access values.
+    /// </summary>
+
     public struct DetRng
     {
-        private ulong _state;        // PCG32 internal state
-        private readonly ulong _inc; // must be odd
+        private ulong _state;
+        private readonly ulong _inc;
 
-        /// Create a stream RNG. 'stream' selects an independent sequence for the same seed.
+        /// <summary>
+        /// Initialize a PCG32 stream RNG.
+        /// The optional 'stream' selects an independent sequence for the same seed.
+        /// </summary>
+        /// <param name="seed">Base seed for the stream.</param>
+        /// <param name="stream">Sequence selector (must be odd internally).</param>
+
         public DetRng(ulong seed, ulong stream = 1442695040888963407UL)
         {
             _state = 0UL;
-            _inc = (stream << 1) | 1UL; // force odd
-            NextUInt();                   // PCG seeding ritual
+            _inc = (stream << 1) | 1UL;
+            NextUInt();
             _state += seed + 0x9E3779B97F4A7C15UL;
             NextUInt();
         }
 
-        /// Build a stream RNG derived from a module sub-seed and a context tuple.
-        /// SAME inputs  SAME sequence; different context  independent sequence.
+        /// <summary>
+        /// Derive a stream RNG from a sub-seed and a context tuple.
+        /// Same (subSeed, ns, a, b) => same sequence; different context => independent.
+        /// </summary>
+        /// <param name="subSeed">Module-level seed (e.g., SeedRegistry.SubSeed).</param>
+        /// <param name="ns">Namespace string to separate usages.</param>
+        /// <param name="a">Optional context value.</param>
+        /// <param name="b">Optional context value.</param>
+        /// <returns>A deterministic stream RNG for that context.</returns>
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static DetRng FromContext(ulong subSeed, string ns, long a = 0, int b = 0)
         {
-            // Make sure we keep everything as ulong to avoid sign-extension issues.
-            ulong stream = (Hash.Hash64(subSeed, ns, a, b) << 1) | 1UL; // ensure odd increment
+
+            ulong stream = (Hash.Hash64(subSeed, ns, a, b) << 1) | 1UL;
             return new DetRng(subSeed, stream);
         }
 
-        // -------- Stateless random-access (no stream/state) --------
+        /// <summary>
+        /// Stateless uniform double in [0,1) from a hashed (subSeed, ns, id, channel) tuple.
+        /// Use for per-entity randoms without storing RNG state.
+        /// </summary>
+        /// <param name="subSeed">Module sub-seed.</param>
+        /// <param name="ns">Namespace string.</param>
+        /// <param name="id">Stable object id.</param>
+        /// <param name="channel">Extra decorrelation lane.</param>
+        /// <returns>A reproducible uniform in [0,1).</returns>
 
-        /// Uniform [0,1) from hashed ID tuple (random access).
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Uniform01(ulong subSeed, string ns, long id, int channel = 0)
             => Hash.ToUnit01(Hash.Hash64(subSeed, ns, id, channel));
 
-        /// Inclusive int in [min,max] via hashed ID tuple (random access).
+        /// <summary>
+        /// Stateless inclusive integer in [min,max] from the same tuple hashing.
+        /// Swaps min/max if provided in reverse.
+        /// </summary>
+        /// <param name="subSeed">Module sub-seed.</param>
+        /// <param name="ns">Namespace.</param>
+        /// <param name="id">Stable object id.</param>
+        /// <param name="min">Lower bound (inclusive).</param>
+        /// <param name="max">Upper bound (inclusive).</param>
+        /// <param name="channel">Extra lane.</param>
+        /// <returns>Deterministic integer in [min,max].</returns>
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int RangeHashed(ulong subSeed, string ns, long id, int min, int max, int channel = 0)
         {
@@ -48,7 +85,10 @@ namespace Beacon.ProcGen
             return (int)(min + (uint)h % span);
         }
 
-        // ----------------- Stream RNG API (stateful) -----------------
+        /// <summary>
+        /// Next 32-bit unsigned integer from the PCG32 stream.
+        /// </summary>
+        /// <returns>A 32-bit pseudo-random value.</returns>
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public uint NextUInt()
@@ -60,20 +100,36 @@ namespace Beacon.ProcGen
             return (xorshifted >> (int)rot) | (xorshifted << (int)((-rot) & 31));
         }
 
-        /// Uniform [0,1) with 53-bit precision (uses two 32-bit draws).
+        /// <summary>
+        /// Uniform [0,1) from the stream with ~53 bits of precision (two draws).
+        /// </summary>
+        /// <returns>A double in [0,1).</returns>
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public double NextDouble01()
         {
-            ulong hi = (ulong)(NextUInt() & 0x001FFFFF); // 21 bits
-            ulong lo = NextUInt();                       // 32 bits
-            ulong frac53 = (hi << 32) | lo;              // 53-bit fraction
+            ulong hi = (ulong)(NextUInt() & 0x001FFFFF);
+            ulong lo = NextUInt();
+            ulong frac53 = (hi << 32) | lo;
             return frac53 * (1.0 / (1UL << 53));
         }
+
+        /// <summary>
+        /// Uniform [0,1) from the stream as a float.
+        /// </summary>
+        /// <returns>A float in [0,1).</returns>
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public float NextFloat01() => (float)NextDouble01();
 
-        /// Inclusive integer in [min,max].
+        /// <summary>
+        /// Inclusive integer in [min,max] using this RNG's stream state.
+        /// Swaps bounds if provided in reverse.
+        /// </summary>
+        /// <param name="min">Lower bound (inclusive).</param>
+        /// <param name="max">Upper bound (inclusive).</param>
+        /// <returns>An integer in [min,max].</returns>
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public int Range(int min, int max)
         {
@@ -82,11 +138,21 @@ namespace Beacon.ProcGen
             return (int)(min + (NextUInt() % span));
         }
 
-        /// True with probability p (0..1).
+        /// <summary>
+        /// Bernoulli trial on the stream.
+        /// </summary>
+        /// <param name="p">Success probability in [0,1].</param>
+        /// <returns>true with probability p.</returns>
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Chance(double p) => NextDouble01() < p;
 
-        /// Standard normal via BoxMuller (mean 0, stddev 1).
+        /// <summary>
+        /// Standard normal sample via Box–Muller.
+        /// Mean 0, standard deviation 1.
+        /// </summary>
+        /// <returns>A Gaussian deviate.</returns>
+
         public double Gaussian()
         {
             double u1 = Math.Max(1e-12, NextDouble01());
@@ -96,7 +162,11 @@ namespace Beacon.ProcGen
             return r * Math.Cos(theta);
         }
 
-        /// FisherYates shuffle in-place.
+        /// <summary>
+        /// In-place Fisher–Yates shuffle using the stream.
+        /// </summary>
+        /// <param name="span">Span to shuffle.</param>
+
         public void Shuffle<T>(Span<T> span)
         {
             for (int i = span.Length - 1; i > 0; i--)
@@ -106,7 +176,13 @@ namespace Beacon.ProcGen
             }
         }
 
-        /// Pick an index by unnormalized weights (>=0). Returns last index on degenerate input.
+        /// <summary>
+        /// Pick index proportional to non-negative weights using the stream.
+        /// Returns the last index if the input is degenerate (sum <= 0).
+        /// </summary>
+        /// <param name="weights">Unnormalized weights (>=0).</param>
+        /// <returns>Selected index.</returns>
+
         public int PickWeighted(ReadOnlySpan<float> weights)
         {
             double sum = 0;
