@@ -60,7 +60,6 @@ public class OrbitHandler : MonoBehaviour
 
     private float previousValue;
     private bool usePrevious = false;
-
     public void AsteroidChance()
     {
         //for the asteroid capture chance
@@ -69,12 +68,24 @@ public class OrbitHandler : MonoBehaviour
         {
             //generate an asteroid based on its size average and deviation
             float size = GetNormalRandom(bodyCaptureChance.MeanBodySize, bodyCaptureChance.SizeDeviation);
-            Debug.Log($"Asteroid generated this turn of size {size}");
+            Debug.Log($"Asteroid generated this turn of size {size}"); //size should be small, as 1 is the default size
+            AddSingleOrbit(Instantiate(AsteroidVarieties.i.AsteroidPrefab), size);
         }
         else
             Debug.Log("Asteroid Not Generated");
     }
 
+    private void AddSingleOrbit(GameObject orbitingObject, float scale)
+    {
+        instantiatedOrbits.Add(orbitingObject);
+
+        SpawnedAsteroid spawnedAsteroid = orbitingObject.GetComponent<SpawnedAsteroid>();
+        spawnedAsteroid.InitializeAsteroid(scale);
+
+        OrbitalData orbitalData = spawnedAsteroid.OrbitalData;
+        orbits.Add(orbitalData);
+        placePlanetaryOrbit(orbitingObject, orbitalData);
+    }
 
     //this function selects a random point on a bell curve using some algorithm Gauss (my goat) created. Important for asteroid generation.
     //Can be implemented into proc gen seeds if we replace the Random.value with a point on the perlin noise file.
