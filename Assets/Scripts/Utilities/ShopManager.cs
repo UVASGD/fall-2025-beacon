@@ -108,7 +108,5 @@ public class ShopManager : MonoBehaviour
             return;
         playerMoney.ChangeMoney(-buildingsInShop[index].moneyCost);
         playerBuildings.AddBuilding(buildingsInShop[index]);
-        buildingsInShop.RemoveAt(index);
-        GenerateShopButtons(buildingsInShop);
     }
 }
