@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +14,9 @@ public class ShopManager : MonoBehaviour
     public PlayerMoney playerMoney;
     public RelicManager relics;
     private bool showingRelics = false;
-    private List<RelicDefinition> relicChoices = new List<RelicDefinition>();
+
+    // UPDATED: now uses RelicInstance
+    private List<RelicInstance> relicChoices = new List<RelicInstance>();
     private bool _subscribedToWaves = false;
     public TMP_Text headerLabel;
 
@@ -57,7 +59,7 @@ public class ShopManager : MonoBehaviour
 
         if (relics != null && relics.ShouldOfferRelicNow())
         {
-            relicChoices = relics.RollChoices();
+            relicChoices = relics.RollChoices(); // List<RelicInstance>
             shopObject.SetActive(true);
             showingRelics = true;
             if (headerLabel != null) headerLabel.text = "Choose a Relic";
@@ -81,11 +83,11 @@ public class ShopManager : MonoBehaviour
     List<Building> GenerateBuildingsForShop()
     {
         List<Building> returnList = new List<Building>();
-        for(int i = 0; i < buildingsInShopCount; i++)
+        for (int i = 0; i < buildingsInShopCount; i++)
         {
             returnList.Add(possibleBuildings[Random.Range(0, possibleBuildings.Count)]);
         }
-        return returnList;  
+        return returnList;
     }
 
     public void CloseShop()
@@ -133,7 +135,8 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    void GenerateRelicButtons(List<RelicDefinition> relicsToShow)
+    // UPDATED: RelicInstance version
+    void GenerateRelicButtons(List<RelicInstance> relicsToShow)
     {
         foreach (var go in previousButtons) Destroy(go);
         previousButtons.Clear();
@@ -154,9 +157,10 @@ public class ShopManager : MonoBehaviour
             var tmp = buttonGO.GetComponentInChildren<TMP_Text>();
             var ugui = (tmp == null) ? buttonGO.GetComponentInChildren<Text>() : null;
 
+            string desc = BuildRelicDescription(relic);
             string labelText = relic.displayName;
-            if (!string.IsNullOrEmpty(relic.description))
-                labelText += $"\n<size=80%>{relic.description}</size>";
+            if (!string.IsNullOrEmpty(desc))
+                labelText += $"\n<size=80%>{desc}</size>";
 
             if (tmp != null) tmp.text = labelText;
             if (ugui != null) ugui.text = labelText;
@@ -171,6 +175,21 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    // Compact description from resolved modifiers, e.g. "Damage +10%, FireRate +8%"
+    string BuildRelicDescription(RelicInstance r)
+    {
+        if (r == null || r.resolvedModifiers == null || r.resolvedModifiers.Count == 0) return "";
+        var sb = new StringBuilder();
+        for (int i = 0; i < r.resolvedModifiers.Count; i++)
+        {
+            var m = r.resolvedModifiers[i];
+            string delta = Mathf.Abs(m.mul) > 0.0001f ? $"{m.mul * 100f:+0.#;-0.#}%" : $"{m.add:+0.##;-0.##}";
+            sb.Append($"{m.stat} {delta}");
+            if (i < r.resolvedModifiers.Count - 1) sb.Append(", ");
+        }
+        return sb.ToString();
+    }
+
     void BuyBuilding(int index)
     {
         if (playerMoney.GetMoney() < buildingsInShop[index].moneyCost)
@@ -180,13 +199,12 @@ public class ShopManager : MonoBehaviour
         buildingsInShop.RemoveAt(index);
         GenerateShopButtons(buildingsInShop);
     }
+
+    // UPDATED: take a RelicInstance directly
     void ChooseRelic(int index)
     {
-        // Apply the relic’s stats globally
-        relics.Take(relicChoices[index]);
+        relics.Take(relicChoices[index]); // applies stats globally
 
-        // Close shop and show the standard “Start Next Wave” button
-        // If you already have CloseShop(), just call that; otherwise:
         shopObject.SetActive(false);
         if (WaveManager.Singleton != null && WaveManager.Singleton.startNextWaveButton != null)
             WaveManager.Singleton.startNextWaveButton.SetActive(true);

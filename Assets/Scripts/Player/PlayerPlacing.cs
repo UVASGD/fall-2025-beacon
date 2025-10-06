@@ -20,6 +20,7 @@ public class PlayerPlacing : MonoBehaviour
     {
         WaveManager.Singleton.onWaveFinished += OnWaveStop;
         WaveManager.Singleton.onWaveStart += OnWaveStart;
+        BuildableArea.areaHovering += ToggleHoveredBuildableArea;
     }
 
     private void Update()
@@ -70,9 +71,17 @@ public class PlayerPlacing : MonoBehaviour
         return null;
     }
 
-    public bool ValidPlacingSpot(Vector3 checkPos)
+    private void ToggleHoveredBuildableArea(bool hovered, Transform passedTransform) //called by an event from the buildableArea script
     {
-        return Physics.CheckBox(checkPos, Vector3.one * cellSize / 2f, Quaternion.identity, LayerMask.GetMask("BuildableArea")) && !Physics.CheckBox(checkPos, Vector3.one * cellSize / 2f, Quaternion.identity, LayerMask.GetMask("BlockBuilding"));
+        hoveringBuildableArea = hovered;
+        buildAreaTransform = passedTransform;
+    }
+    private bool hoveringBuildableArea = false;
+    private Transform buildAreaTransform;
+    public bool ValidPlacingSpot()
+    {
+        //return Physics.CheckBox(checkPos, Vector3.one * cellSize / 2f, Quaternion.identity, LayerMask.GetMask("BuildableArea")) && !Physics.CheckBox(checkPos, Vector3.one * cellSize / 2f, Quaternion.identity, LayerMask.GetMask("BlockBuilding"));
+        return hoveringBuildableArea; //much cheaper computationally than using the Physics library
     }
 
     private void HandlePlacing()
@@ -88,10 +97,12 @@ public class PlayerPlacing : MonoBehaviour
                 playerBuildings.RemoveAtIndex(selectedBuildingIndex);
                 SetSelectedIndex(-1);
             }
-            else if (ValidPlacingSpot(placePosition))
+            else if (ValidPlacingSpot())
             {
                 Building toBuild = playerBuildings.GetBuilding(selectedBuildingIndex);
-                Instantiate(toBuild.buildingPrefab, placePosition, Quaternion.identity);
+
+                //need to attach to a parent for construction on an orbital body. To do this, BuildableArea was refactored into a script that implements IPointerEnter/Exit that passes buildAreaTransform.
+                Instantiate(toBuild.buildingPrefab, placePosition, Quaternion.identity, buildAreaTransform);
                 playerBuildings.RemoveAtIndex(selectedBuildingIndex);
                 SetSelectedIndex(-1);
             }

@@ -9,7 +9,7 @@ public class BuildingBorderManager : MonoBehaviour
     private void Start()
     {
         WaveManager.Singleton.onWaveFinished += OnWaveEnd;
-        WaveManager.Singleton.onWaveStart += OnWaveStart;   
+        WaveManager.Singleton.onWaveStart += OnWaveStart;
     }
 
     void OnWaveEnd()
