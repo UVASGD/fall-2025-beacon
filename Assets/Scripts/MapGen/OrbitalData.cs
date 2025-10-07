@@ -13,10 +13,11 @@ public class OrbitalData //contains data for child orbits that are contained in 
     [SerializeField] public GameObject associatedPlanet;
 
     [SerializeField] bool counterClockwise = true; //if false, this body orbits in retrograde
+    [SerializeField] float baseOreContent;
 
     public int PhaseLength => phaseLength;
     public int OrbitalDistance => orbitalDistance;
-
+    public float BaseOreContent => baseOreContent;
     public void IncrementOrbitalProgress(float timeDelta)
     {
         if (counterClockwise)
