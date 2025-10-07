@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnedAsteroid : MonoBehaviour
@@ -10,6 +9,7 @@ public class SpawnedAsteroid : MonoBehaviour
     [SerializeField] SpriteRenderer mainRenderer;
     [SerializeField] BoxCollider buildableArea;
     [SerializeField] SpriteRenderer buildableAreaRenderer;
+    [SerializeField] CelestialBodyData bodyData;
     public OrbitalData OrbitalData => orbitalData;
 
     public void InitializeAsteroid(float asteroidScale)
