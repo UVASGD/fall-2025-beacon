@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class ShopManager : MonoBehaviour
 {
     public GameObject shopObject;
-    public List<Building> possibleBuildings;
-    public int buildingsInShopCount = 3;
     public GameObject buttonTemplatePrefab;
     public PlayerBuildings playerBuildings;
     public PlayerMoney playerMoney;
@@ -33,11 +31,31 @@ public class ShopManager : MonoBehaviour
     List<Building> GenerateBuildingsForShop()
     {
         List<Building> returnList = new List<Building>();
-        for(int i = 0; i < buildingsInShopCount; i++)
+
+        // Get all buildings from the player's faction
+        Faction playerFaction = FactionManager.i.GetPlayerFaction();
+        if (playerFaction != null && playerFaction.FactionBase != null)
         {
-            returnList.Add(possibleBuildings[Random.Range(0, possibleBuildings.Count)]);
+            List<Building> factionBuildings = playerFaction.FactionBase.FactionBuildings;
+            if (factionBuildings != null && factionBuildings.Count > 0)
+            {
+                // Add all faction buildings to the shop
+                foreach (Building building in factionBuildings)
+                {
+                    returnList.Add(building);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("No faction buildings available for shop!");
+            }
         }
-        return returnList;  
+        else
+        {
+            Debug.LogError("Player faction not found!");
+        }
+
+        return returnList;
     }
 
     public void CloseShop()
@@ -90,7 +108,5 @@ public class ShopManager : MonoBehaviour
             return;
         playerMoney.ChangeMoney(-buildingsInShop[index].moneyCost);
         playerBuildings.AddBuilding(buildingsInShop[index]);
-        buildingsInShop.RemoveAt(index);
-        GenerateShopButtons(buildingsInShop);
     }
 }
