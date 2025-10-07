@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuildingBorderManager : MonoBehaviour
 {
-    public List<GameObject> borderPieces = new List<GameObject>();
+    [SerializeField] GameObject borderPiece;
 
     private void Start()
     {
@@ -14,17 +14,11 @@ public class BuildingBorderManager : MonoBehaviour
 
     void OnWaveEnd()
     {
-        foreach (var piece in borderPieces)
-        {
-            piece.gameObject.SetActive(true);
-        }
+        borderPiece.SetActive(true);
     }
 
     void OnWaveStart()
     {
-        foreach (var piece in borderPieces)
-        {
-            piece.gameObject.SetActive(false);
-        }
+        borderPiece.SetActive(false);
     }
 }

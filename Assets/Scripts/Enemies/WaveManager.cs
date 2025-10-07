@@ -5,7 +5,6 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     public static WaveManager Singleton;
-
     public GameObject frigateSwarmPrefab;
     public GameObject carrierSpawnPrefab;
     public List<GameObject> portals = new List<GameObject>();
