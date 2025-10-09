@@ -9,13 +9,11 @@ public class BuildableArea : MonoBehaviour
 
     void OnMouseOver()
     {
-        Debug.Log("Hovered buildable area");
         areaHovering.Invoke(true, gameObject.transform);
     }
 
     void OnMouseExit()
     {
-        Debug.Log("Left buildable area");
         areaHovering.Invoke(false, gameObject.transform);
     }
 }

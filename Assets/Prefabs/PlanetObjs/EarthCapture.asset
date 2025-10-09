@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5562707ca42564d4e94da8ac53dd0a29, type: 3}
   m_Name: EarthCapture
   m_EditorClassIdentifier: 
-  meanCaptureChance: 0.8
+  meanCaptureChance: 1
   captureDeviation: 0.1
-  meanBodySize: 50
-  sizeDeviation: 1
+  meanBodySize: 1.5
+  sizeDeviation: 0.5
