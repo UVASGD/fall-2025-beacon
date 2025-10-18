@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
-  m_Name: Cannon Turret
+  m_Name: Human Damage Booster
   m_EditorClassIdentifier: 
-  buildingPrefab: {fileID: 5180620160705526848, guid: ace18a9ae9bcaea45a51deb2f72ea2d6, type: 3}
+  buildingPrefab: {fileID: 9199525652770942988, guid: 710892477f9ca4d4e98540b46ed6d8e7, type: 3}
+  moneyCost: 30

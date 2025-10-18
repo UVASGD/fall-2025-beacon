@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4727,7 +4726,7 @@ MonoBehaviour:
     orbitalDistance: 50
     associatedPlanet: {fileID: 1189027665547043079, guid: 57385b9c77c25264faccfb7b3877f780, type: 3}
     counterClockwise: 1
-    baseOreContent: 0
+    baseOreContent: 100
   bodyCaptureChance: {fileID: 11400000, guid: b0616daac3748814cba7076c90f73b80, type: 2}
 --- !u!114 &1516526870
 MonoBehaviour:
@@ -6022,11 +6021,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopObject: {fileID: 1051892378}
-  possibleBuildings:
-  - {fileID: 11400000, guid: d9c58a7cb94ec4c4595e9a4b8dca7132, type: 2}
-  - {fileID: 11400000, guid: 894e744bb7de5ee4b8a1500e456085ff, type: 2}
-  - {fileID: 11400000, guid: ad696a577302f714f874666cbe07fc45, type: 2}
-  buildingsInShopCount: 6
   buttonTemplatePrefab: {fileID: 420851640}
   playerBuildings: {fileID: 710189777}
   playerMoney: {fileID: 710189780}
@@ -6349,7 +6343,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   homePlanet: {fileID: 1516526865}
-  shopManager: {fileID: 1954486686}
   playerBuildings: {fileID: 710189777}
 --- !u!1 &2085566767
 GameObject:

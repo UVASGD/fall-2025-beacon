@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
-  m_Name: Fighter Hanger
+  m_Name: Human Fighter Hanger
   m_EditorClassIdentifier: 
-  buildingPrefab: {fileID: 4667370074088886071, guid: 54cc52566ecf2334ab0aa07536a824f4, type: 3}
+  buildingPrefab: {fileID: 391241582652388549, guid: 746e7c7edcf8866469dedf70c853d992, type: 3}
+  moneyCost: 30

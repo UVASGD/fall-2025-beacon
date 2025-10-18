@@ -30,4 +30,9 @@ public class OrbitalData //contains data for child orbits that are contained in 
             phaseProgress -= phaseLength; //to reduce progress back to below its phase length
         }
     }
+
+    public void SetBaseOreContent(int setTo)
+    {
+        baseOreContent = setTo;
+    }
 }

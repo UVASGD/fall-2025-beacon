@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class OrbitHandler : MonoBehaviour
 {
+    public static OrbitHandler Instance;
+
     [SerializeField] List<OrbitalData> orbits;
     private List<GameObject> instantiatedOrbits;
     [SerializeField] CaptureChance bodyCaptureChance;
     void Awake()
     {
+        Instance = this;
+
         Vector3 center = this.transform.position;
 
         instantiatedOrbits = new List<GameObject>(); //references to the instantiated orbits
@@ -111,5 +115,16 @@ public class OrbitHandler : MonoBehaviour
 
         //return mean + the appropriate number of deviations
         return mean + randStdNormal * stdDev;
+    }
+
+    //Returns an orbital data associated with supplied gameObject. Returns null if none are associated.
+    public OrbitalData GetOrbitalDataOfPlanet(GameObject associatedPlanet)
+    {
+        foreach (var orbData in orbits)
+        {
+            if (orbData.associatedPlanet == associatedPlanet)
+                return orbData;
+        }
+        return null;
     }
 }

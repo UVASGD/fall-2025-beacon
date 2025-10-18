@@ -21,22 +21,28 @@ public class SpawnedAsteroid : MonoBehaviour
         {
             case < 0.75f:
                 spriteIndex = 0;
+                orbitalData.SetBaseOreContent(Random.Range(1, 100));
                 break;
             case < 1.25f:
                 spriteIndex = 1;
+                orbitalData.SetBaseOreContent(Random.Range(150, 250));
                 break;
             case < 2.5f:
                 spriteIndex = 2;
+                orbitalData.SetBaseOreContent(Random.Range(300, 400));
                 break;
             case < 3.5f:
                 spriteIndex = 3;
+                orbitalData.SetBaseOreContent(Random.Range(450, 550));
                 break;
             case < 4.5f:
                 spriteIndex = 4;
+                orbitalData.SetBaseOreContent(Random.Range(600, 650));
                 break;
 
             default:
                 spriteIndex = 5;
+                orbitalData.SetBaseOreContent(Random.Range(700, 800));
                 break;
         }
         mainRenderer.sprite = AsteroidVarieties.i.AsteroidSprites[spriteIndex];
