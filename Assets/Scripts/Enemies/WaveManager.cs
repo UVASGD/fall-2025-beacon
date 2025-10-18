@@ -22,14 +22,16 @@ public class WaveManager : MonoBehaviour
     private int remainingEnemies = 0;
     private bool waveInProgress;
 
+
+    public WaveState waveState { get; private set; }
     private void Awake()
     {
-        Singleton = this;   
+        Singleton = this;
     }
 
     private void Start()
     {
-
+        waveState = WaveState.Inactive;
     }
 
     private void Update()
@@ -39,6 +41,7 @@ public class WaveManager : MonoBehaviour
             waveInProgress = false;
             if(onWaveFinished != null)
             {
+                waveState = WaveState.Inactive;
                 onWaveFinished();
             }
         }
@@ -54,6 +57,7 @@ public class WaveManager : MonoBehaviour
         startNextWaveButton.SetActive(false);
         if (onWaveStart != null)
         {
+            waveState = WaveState.Active;
             onWaveStart();
         }
         int enemiesToAssign = waveCount * portals.Count;
@@ -143,4 +147,10 @@ public class WaveManager : MonoBehaviour
         }
         return returnSum;
     }
+}
+
+public enum WaveState
+{
+    Active,
+    Inactive //used to pause orbits if the wavestate is inactive (during the build/place phase)
 }

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class OrbitHandler : MonoBehaviour
@@ -29,6 +28,9 @@ public class OrbitHandler : MonoBehaviour
     }
     public void Update()
     {
+        //only if the wavestate is active
+        if (WaveManager.Singleton.waveState == WaveState.Inactive)
+            return;
         //orbit the planet relative to its phase length
         for (int i = 0; i < instantiatedOrbits.Count; i++)
         {

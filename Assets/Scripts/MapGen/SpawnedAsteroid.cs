@@ -14,8 +14,6 @@ public class SpawnedAsteroid : MonoBehaviour
 
     public void InitializeAsteroid(float asteroidScale)
     {
-        //renderer.gameObject.transform.localScale = new Vector3(asteroidScale, 1, asteroidScale); //changing this scale also alters the size of the construction box.
-
         int spriteIndex = 0;
         switch (asteroidScale) //assign the sprite of the captured body based on its scale
         {
@@ -34,7 +32,6 @@ public class SpawnedAsteroid : MonoBehaviour
             case < 4.5f:
                 spriteIndex = 4;
                 break;
-
             default:
                 spriteIndex = 5;
                 break;

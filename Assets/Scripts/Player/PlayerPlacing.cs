@@ -10,10 +10,11 @@ public class PlayerPlacing : MonoBehaviour
     public GameObject placingIcon;
     private PlayerBuildings playerBuildings;
     private bool placingEnabled = true;
-
+    private Transform planetReference; //the reference planet for the grid snap
     private void Awake()
     {
         playerBuildings = GetComponent<PlayerBuildings>();
+        BuildingBorderManager.onMouseHover += UpdateReferencePlanet;
     }
 
     private void Start()
@@ -40,7 +41,11 @@ public class PlayerPlacing : MonoBehaviour
             placingIcon.SetActive(false);
         }
     }
-
+    private void UpdateReferencePlanet(Transform reference)
+    {
+        planetReference = reference;
+        Debug.Log($"origin reference set to {reference.gameObject.name}");
+    }
     public void OnWaveStart()
     {
         placingEnabled = false;
@@ -118,7 +123,15 @@ public class PlayerPlacing : MonoBehaviour
         hitPoint.y = 0;
         hitPoint.x *= 1 / cellSize; hitPoint.z *= 1 / cellSize;
         hitPoint.x = Mathf.RoundToInt(hitPoint.x); hitPoint.z = Mathf.RoundToInt(hitPoint.z);
-        return hitPoint * cellSize;
+
+        //make the return relative to the selected origin. This is based on the hovered planet
+        Vector3 origin;
+        if (planetReference != null)
+            origin = planetReference.position;
+        else
+            origin = Vector3.zero; //if there is no established reference planet, set to zero
+
+        return (hitPoint * cellSize);
     }
 
     public void SetSelectedIndex(int setTo)
