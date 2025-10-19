@@ -14,10 +14,12 @@ public class OrbitalData //contains data for child orbits that are contained in 
 
     [SerializeField] bool counterClockwise = true; //if false, this body orbits in retrograde
     [SerializeField] float baseOreContent;
+    [SerializeField] int planetMaxHealth;
 
     public int PhaseLength => phaseLength;
     public int OrbitalDistance => orbitalDistance;
     public float BaseOreContent => baseOreContent;
+    public int PlanetMaxHealth => planetMaxHealth;
     public void IncrementOrbitalProgress(float timeDelta)
     {
         if (counterClockwise)
@@ -29,6 +31,11 @@ public class OrbitalData //contains data for child orbits that are contained in 
         {
             phaseProgress -= phaseLength; //to reduce progress back to below its phase length
         }
+    }
+
+    public void SetPlanetMaxHealth(int setTo)
+    {
+        planetMaxHealth = setTo;
     }
 
     public void SetBaseOreContent(int setTo)

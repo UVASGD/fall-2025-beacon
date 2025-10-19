@@ -510,7 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetingController: {fileID: 5347607909031485407}
   range: 20
-  speed: 6
+  speed: 13
   fireRate: 1
   turretHead: {fileID: 6241489201042774594}
   firePoints:

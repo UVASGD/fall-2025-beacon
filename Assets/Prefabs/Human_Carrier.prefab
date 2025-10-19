@@ -88,7 +88,7 @@ MonoBehaviour:
   - {fileID: 0}
   isMoving: 0
   moveDirection: {x: 0, y: 0, z: 0}
-  idleDriftRadius: 1
+  idleDriftRadius: 2.5
   idleMoveSpeed: 1
   idleRotationSpeed: 2
 --- !u!114 &3486999070656193864

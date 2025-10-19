@@ -38,6 +38,7 @@ public class PlayerMoney : MonoBehaviour
     {
         int earnedIncome = 0;
         int fromTaxation = 0;
+        int fromMining = GetMiningMoney();
 
         //add income base on each planet's tax rate * planetary income
         foreach (var planet in taxedPlanets)
@@ -48,16 +49,28 @@ public class PlayerMoney : MonoBehaviour
         earnedIncome += fromTaxation;
         earnedIncome += baseIncome;
         earnedIncome += defeatedEnemyIncome;
+        earnedIncome += fromMining;
 
         List<int> incomeSources = new List<int>();
         incomeSources.Add(baseIncome);
         incomeSources.Add(fromTaxation); //from planetary taxation
         incomeSources.Add(defeatedEnemyIncome); //from defeated enemies
-        incomeSources.Add(0); //damage taken bonus (not added yet)
+        incomeSources.Add(fromMining); //mining money
 
         yield return earnedMoneyUI.EndTurnIncome(incomeSources, earnedIncome);
 
         ChangeMoney(earnedIncome);
+        defeatedEnemyIncome = 0;
+    }
+
+    private int GetMiningMoney()
+    {
+        int total = 0;
+        foreach(var mine in MineController.mineControllers)
+        {
+            total += mine.GetMiningMoney();
+        }
+        return total;
     }
 
     public int GetMoney()

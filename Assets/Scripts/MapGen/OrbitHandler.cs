@@ -56,7 +56,8 @@ public class OrbitHandler : MonoBehaviour
                 0f,
                 orbit.OrbitalDistance * Mathf.Sin(angle)
         );
-
+        orbitingBody.AddComponent<PlanetaryHealth>().SetMaxHealth(orbit.PlanetMaxHealth);
+        orbitingBody.GetComponent<PlanetaryHealth>().TopOffHealth();
         orbitingBody.transform.position = center + offset;
     }
 
@@ -126,5 +127,22 @@ public class OrbitHandler : MonoBehaviour
                 return orbData;
         }
         return null;
+    }
+
+    public Transform GetClosestPlanetToPosition(Vector3 position)
+    {
+        float closestDistance = Mathf.Infinity;
+        Transform closestTransform = null;
+        foreach(var orbData in orbits)
+        {
+            float distance = Vector3.Distance(position, orbData.associatedPlanet.transform.position);
+            if(distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestTransform = orbData.associatedPlanet.transform;  
+            }
+        }
+
+        return closestTransform;
     }
 }

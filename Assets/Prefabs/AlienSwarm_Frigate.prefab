@@ -407,7 +407,7 @@ MonoBehaviour:
   - {fileID: 5524299586909485688}
   isMoving: 0
   moveDirection: {x: 0, y: 0, z: 0}
-  idleDriftRadius: 1
+  idleDriftRadius: 2.5
   idleMoveSpeed: 1
   idleRotationSpeed: 2
 --- !u!114 &2086228098103785187
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speed: 40
-  damage: 10
+  damage: 3
   fireRate: 1
   firePoints:
   - {fileID: 8997433521860848687}
@@ -484,8 +484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5a919e38b0c314aaf09eac6b6473c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 40
+  maxHealth: 40
   defeatBonus: 5
 --- !u!1 &5269725079870255406
 GameObject:

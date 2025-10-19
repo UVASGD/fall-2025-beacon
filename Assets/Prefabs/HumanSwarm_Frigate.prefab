@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 5757552607607127351}
   - component: {fileID: 1298390359991338506}
   - component: {fileID: 4895848925741458340}
+  - component: {fileID: 8168638838183860541}
   m_Layer: 9
   m_Name: HumanSwarm_Frigate
   m_TagString: Untagged
@@ -439,7 +440,7 @@ MonoBehaviour:
   - {fileID: 3188719342366655807}
   isMoving: 0
   moveDirection: {x: 0, y: 0, z: 0}
-  idleDriftRadius: 1
+  idleDriftRadius: 2.5
   idleMoveSpeed: 1
   idleRotationSpeed: 2
 --- !u!114 &3486999070656193864
@@ -518,6 +519,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   maxHealth: 100
+--- !u!114 &8168638838183860541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5430815154498568113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1296042f0201c4584e366f820290e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageReduction: 0
+  damageBuff: 0.1
 --- !u!1 &6648471844242734077
 GameObject:
   m_ObjectHideFlags: 0

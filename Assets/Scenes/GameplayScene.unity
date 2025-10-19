@@ -4677,6 +4677,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 798354076}
+  - {fileID: 1783083188}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1516526867
@@ -5489,7 +5490,7 @@ GameObject:
   - component: {fileID: 1783083188}
   - component: {fileID: 1783083189}
   - component: {fileID: 1783083190}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BuildableArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5504,12 +5505,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783083186}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1516526866}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1783083189
 MonoBehaviour:
@@ -6623,7 +6624,6 @@ SceneRoots:
   - {fileID: 951296755}
   - {fileID: 1288228014}
   - {fileID: 891056050}
-  - {fileID: 1783083188}
   - {fileID: 233787618}
   - {fileID: 201223531}
   - {fileID: 692918415}
