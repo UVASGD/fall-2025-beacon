@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,9 @@ public class PlayerPlacing : MonoBehaviour
     public GameObject placingIcon;
     private PlayerBuildings playerBuildings;
     private bool placingEnabled = true;
+
     private Transform planetReference; //the reference planet for the grid snap
+    private Vector3 referenceGridDimensions; //the dimensions of the reference planet's grids
     private void Awake()
     {
         playerBuildings = GetComponent<PlayerBuildings>();
@@ -114,6 +117,7 @@ public class PlayerPlacing : MonoBehaviour
         }
     }
 
+    const float relativeGridSize = 3f;
     private Vector3 GetClosestGridPositionToCursor()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -123,13 +127,6 @@ public class PlayerPlacing : MonoBehaviour
         hitPoint.y = 0;
         hitPoint.x *= 1 / cellSize; hitPoint.z *= 1 / cellSize;
         hitPoint.x = Mathf.RoundToInt(hitPoint.x); hitPoint.z = Mathf.RoundToInt(hitPoint.z);
-
-        //make the return relative to the selected origin. This is based on the hovered planet
-        Vector3 origin;
-        if (planetReference != null)
-            origin = planetReference.position;
-        else
-            origin = Vector3.zero; //if there is no established reference planet, set to zero
 
         return (hitPoint * cellSize);
     }

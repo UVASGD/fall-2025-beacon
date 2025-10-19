@@ -58,6 +58,8 @@ public class PlayerMoney : MonoBehaviour
         yield return earnedMoneyUI.EndTurnIncome(incomeSources, earnedIncome);
 
         ChangeMoney(earnedIncome);
+
+        defeatedEnemyIncome = 0; //reset at the end of the round
     }
 
     public int GetMoney()

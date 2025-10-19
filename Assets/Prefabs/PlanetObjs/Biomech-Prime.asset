@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39d74fd3e32e85c4499214c772ab1d31, type: 3}
-  m_Name: Mars_TEST
+  m_Name: Biomech-Prime
   m_EditorClassIdentifier: 
   basePlanetSprites:
-  - {fileID: 21300000, guid: 00945e976d91caf49b6c1df4b0979d20, type: 3}
+  - {fileID: 21300000, guid: 5abbde5f40d02f548a031cf6b3e77fb2, type: 3}
   maxPlanetHealth: 2000
   bodyData:
-    bodyName: 
-    population: 
-    baseOreContent: 0
-    planetIcon: {fileID: 0}
+    bodyName: Biomech-Prime
+    population: 10000000000
+    baseOreContent: 150
+    planetIcon: {fileID: 21300000, guid: 5abbde5f40d02f548a031cf6b3e77fb2, type: 3}
