@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39d74fd3e32e85c4499214c772ab1d31, type: 3}
-  m_Name: Earth
+  m_Name: Greenhouse-1
   m_EditorClassIdentifier: 
   basePlanetSprites:
-  - {fileID: 21300000, guid: 108a9fb48f4a69942b4f1e58e1a536e5, type: 3}
-  maxPlanetHealth: 1000
+  - {fileID: 21300000, guid: 71004c1518839374f8f89386daa50678, type: 3}
+  maxPlanetHealth: 1500
   bodyData:
-    bodyName: Earth
-    population: 2147483647
-    baseOreContent: 100
-    planetIcon: {fileID: 21300000, guid: 108a9fb48f4a69942b4f1e58e1a536e5, type: 3}
+    bodyName: Greenhouse-Mother
+    population: 72000000000000
+    baseOreContent: 0
+    planetIcon: {fileID: 21300000, guid: 71004c1518839374f8f89386daa50678, type: 3}

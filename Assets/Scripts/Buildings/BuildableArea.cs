@@ -1,10 +1,9 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class BuildableArea : MonoBehaviour
 {
-    public static Action<bool, Transform> areaHovering; //I feel smart for this one
+    public static Action<bool, Transform> areaHovering;
 
 
     void OnMouseOver()

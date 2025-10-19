@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnedAsteroid : MonoBehaviour
@@ -10,12 +9,11 @@ public class SpawnedAsteroid : MonoBehaviour
     [SerializeField] SpriteRenderer mainRenderer;
     [SerializeField] BoxCollider buildableArea;
     [SerializeField] SpriteRenderer buildableAreaRenderer;
+    [SerializeField] CelestialBodyData bodyData;
     public OrbitalData OrbitalData => orbitalData;
 
     public void InitializeAsteroid(float asteroidScale)
     {
-        //renderer.gameObject.transform.localScale = new Vector3(asteroidScale, 1, asteroidScale); //changing this scale also alters the size of the construction box.
-
         int spriteIndex = 0;
         switch (asteroidScale) //assign the sprite of the captured body based on its scale
         {
@@ -44,7 +42,6 @@ public class SpawnedAsteroid : MonoBehaviour
                 orbitalData.SetBaseOreContent(Random.Range(300, 650));
                 orbitalData.SetPlanetMaxHealth(550);
                 break;
-
             default:
                 spriteIndex = 5;
                 orbitalData.SetBaseOreContent(Random.Range(350, 800));

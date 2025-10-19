@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class BuildingBorderManager : MonoBehaviour
 {
     [SerializeField] GameObject borderPiece;
-
+    public static event Action<Transform> onMouseHover;
     private void Start()
     {
         WaveManager.Singleton.onWaveFinished += OnWaveEnd;
@@ -20,5 +21,9 @@ public class BuildingBorderManager : MonoBehaviour
     void OnWaveStart()
     {
         borderPiece.SetActive(false);
+    }
+    void OnMouseEnter()
+    {
+        onMouseHover.Invoke(gameObject.transform);
     }
 }
