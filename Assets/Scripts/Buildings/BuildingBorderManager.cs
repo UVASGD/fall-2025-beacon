@@ -26,4 +26,10 @@ public class BuildingBorderManager : MonoBehaviour
     {
         onMouseHover.Invoke(gameObject.transform);
     }
+
+    private void OnDestroy()
+    {
+        WaveManager.Singleton.onWaveFinished -= OnWaveEnd;
+        WaveManager.Singleton.onWaveStart -= OnWaveStart;
+    }
 }

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1684290123810353418}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.582}
+  m_LocalPosition: {x: 0, y: 2, z: 1.582}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -434,7 +434,7 @@ Transform:
   m_GameObject: {fileID: 7028099891343859529}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.32199, y: -1, z: -6.0997076}
+  m_LocalPosition: {x: 19.32199, y: 0, z: -6.0997076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -510,7 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetingController: {fileID: 5347607909031485407}
   range: 20
-  speed: 13
+  speed: 17
   fireRate: 1
   turretHead: {fileID: 6241489201042774594}
   firePoints:
@@ -544,4 +544,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bdb63d65046e4e46a7fd0e0d0b2d378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 7

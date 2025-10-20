@@ -10,6 +10,7 @@ public class WaveManager : MonoBehaviour
     public List<GameObject> portals = new List<GameObject>();
     public float spawnInBetweenTime = 1f;
     public GameObject startNextWaveButton;
+    public GameObject portalPrefab;
 
     public delegate void Simple();
     public event Simple onWaveFinished;
@@ -54,6 +55,7 @@ public class WaveManager : MonoBehaviour
 
     public void StartNewWave()
     {
+        SpawnNewPortals();
         startNextWaveButton.SetActive(false);
         if (onWaveStart != null)
         {
@@ -81,6 +83,23 @@ public class WaveManager : MonoBehaviour
         waveInProgress = true;
     }
 
+    private void SpawnNewPortals()
+    {
+        foreach(var portal in portals)
+        {
+            Destroy(portal);
+        }
+
+        int portalCount = 4;
+        List<GameObject> allOrbitingBodies = new List<GameObject>();
+        foreach(var health in PlanetaryHealth.planetaryHealths)
+        {
+            allOrbitingBodies.Add(health.gameObject);
+        }
+        List<GameObject> newPortals = PrefabPlacementHelper.PlacePrefabs(portalPrefab, portalCount, 20f, 80f, allOrbitingBodies);
+        portals = newPortals;   
+    }
+
     public void OnEnemySpawn()
     {
         remainingEnemies++;
@@ -100,6 +119,8 @@ public class WaveManager : MonoBehaviour
             yield return new WaitForSeconds(spawnInBetweenTime);
             currentIndex++;
         }
+        yield return new WaitForSeconds(1f);
+        portal.GetComponent<SmoothRandomRotateAndScale>().ShrinkAndDestroy();
     }
 
     public int CountIntegerInArray(int targetInteger, int[] integerArray)

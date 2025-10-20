@@ -57,9 +57,10 @@ public class PlayerMoney : MonoBehaviour
         incomeSources.Add(defeatedEnemyIncome); //from defeated enemies
         incomeSources.Add(fromMining); //mining money
 
+        ChangeMoney(earnedIncome);
+
         yield return earnedMoneyUI.EndTurnIncome(incomeSources, earnedIncome);
 
-        ChangeMoney(earnedIncome);
         defeatedEnemyIncome = 0;
     }
 

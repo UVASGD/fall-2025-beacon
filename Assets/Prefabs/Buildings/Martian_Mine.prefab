@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 1657875646738517677}
   - component: {fileID: 3159533825843339382}
   - component: {fileID: 5298659033714580075}
+  - component: {fileID: 3328180026917767287}
   m_Layer: 0
   m_Name: Martian_Mine
   m_TagString: Untagged
@@ -340,3 +341,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level_text: {fileID: 102224605936812010}
   level: 1
+--- !u!114 &3328180026917767287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6842611585933196300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60ab995b87f81d4468a8642a4c0838dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  associatedOrbitalData:
+    phaseLength: 0
+    phaseProgress: 0
+    orbitalDistance: 0
+    associatedPlanet: {fileID: 0}
+    counterClockwise: 1
+    baseOreContent: 0
+    planetMaxHealth: 0
+    buildingSize: 0

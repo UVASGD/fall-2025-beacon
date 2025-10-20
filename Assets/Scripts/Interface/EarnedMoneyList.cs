@@ -42,9 +42,9 @@ public class EarnedMoneyList : MonoBehaviour
     {
         foreach (var text in incomeTypes)
         {
-            text.text = "0";
+            text.text = "###";
         }
-        totalIncomeAmount.text = "0";
+        totalIncomeAmount.text = "###";
     }
 
     private IEnumerator DisplayEarnedIncome()

@@ -83,9 +83,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swarmModel:
   - {fileID: 8997433521860848687}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   isMoving: 0
   moveDirection: {x: 0, y: 0, z: 0}
   idleDriftRadius: 2.5
@@ -164,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 200
   maxHealth: 200
-  defeatBonus: 5
+  defeatBonus: 0
 --- !u!1 &5291665167486315694
 GameObject:
   m_ObjectHideFlags: 0
