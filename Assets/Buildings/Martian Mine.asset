@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
-  m_Name: Martian Hangar
+  m_Name: Martian Mine
   m_EditorClassIdentifier: 
-  buildingPrefab: {fileID: 4667370074088886071, guid: 54cc52566ecf2334ab0aa07536a824f4, type: 3}
+  buildingPrefab: {fileID: 6842611585933196300, guid: 86558674cb2cdd443baf3ba7bfcf5d2f, type: 3}
   moneyCost: 30

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +12,12 @@ public class PlayerPlacing : MonoBehaviour
     private PlayerBuildings playerBuildings;
     private bool placingEnabled = true;
 
+    private Transform planetReference; //the reference planet for the grid snap
+    private Vector3 referenceGridDimensions; //the dimensions of the reference planet's grids
     private void Awake()
     {
         playerBuildings = GetComponent<PlayerBuildings>();
+        BuildingBorderManager.onMouseHover += UpdateReferencePlanet;
     }
 
     private void Start()
@@ -40,7 +44,11 @@ public class PlayerPlacing : MonoBehaviour
             placingIcon.SetActive(false);
         }
     }
-
+    private void UpdateReferencePlanet(Transform reference)
+    {
+        planetReference = reference;
+        Debug.Log($"origin reference set to {reference.gameObject.name}");
+    }
     public void OnWaveStart()
     {
         placingEnabled = false;
@@ -109,6 +117,7 @@ public class PlayerPlacing : MonoBehaviour
         }
     }
 
+    const float relativeGridSize = 3f;
     private Vector3 GetClosestGridPositionToCursor()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -118,7 +127,8 @@ public class PlayerPlacing : MonoBehaviour
         hitPoint.y = 0;
         hitPoint.x *= 1 / cellSize; hitPoint.z *= 1 / cellSize;
         hitPoint.x = Mathf.RoundToInt(hitPoint.x); hitPoint.z = Mathf.RoundToInt(hitPoint.z);
-        return hitPoint * cellSize;
+
+        return (hitPoint * cellSize);
     }
 
     public void SetSelectedIndex(int setTo)

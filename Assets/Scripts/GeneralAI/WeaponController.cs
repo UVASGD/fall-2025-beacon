@@ -15,6 +15,14 @@ public class WeaponController : MonoBehaviour
     private float cooldown = 0f;
     private bool enableShooting;
 
+    private CarrierBuffController carrierBuffController;
+
+    private void Awake()
+    {
+        if(GetComponent<CarrierBuffController>() != null)
+            carrierBuffController = GetComponent<CarrierBuffController>();
+    }
+
     private void Update()
     {
         if (cooldown > 0f)
@@ -48,9 +56,21 @@ public class WeaponController : MonoBehaviour
         foreach(Transform firePoint in firePoints)
         {
             GameObject newProjectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-            newProjectile.GetComponent<ProjectileController>().Initialize(target, speed, damage);
+            newProjectile.GetComponent<ProjectileController>().Initialize(target, speed, GetDamage());
         }
 
         cooldown = 1 / fireRate;
+    }
+
+    private float GetDamage()
+    {
+        if(carrierBuffController != null && carrierBuffController.CarrierInRange())
+        {
+            return damage * (1f + carrierBuffController.damageBuff);
+        }
+        else
+        {
+            return damage;
+        }
     }
 }

@@ -15,16 +15,19 @@ MonoBehaviour:
   factionName: Humanity
   factionAdjective: Human
   factionID: 0
-  factionIcon: {fileID: 21300000, guid: 6e851cfa151d92e4bbf174d6f58d7a32, type: 3}
+  factionIcon: {fileID: 21300000, guid: 108a9fb48f4a69942b4f1e58e1a536e5, type: 3}
   factionBuildings:
   - {fileID: 11400000, guid: d9c58a7cb94ec4c4595e9a4b8dca7132, type: 2}
-  - {fileID: 11400000, guid: ad696a577302f714f874666cbe07fc45, type: 2}
+  - {fileID: 11400000, guid: 839311b9ea64f49459c153de43c89b1e, type: 2}
   - {fileID: 11400000, guid: 894e744bb7de5ee4b8a1500e456085ff, type: 2}
+  - {fileID: 11400000, guid: c42fc00f46070f64186cb851101021e4, type: 2}
   startingBuildings:
   - {fileID: 11400000, guid: d9c58a7cb94ec4c4595e9a4b8dca7132, type: 2}
   - {fileID: 11400000, guid: d9c58a7cb94ec4c4595e9a4b8dca7132, type: 2}
   - {fileID: 11400000, guid: 894e744bb7de5ee4b8a1500e456085ff, type: 2}
   homePlanet: {fileID: 11400000, guid: 662fa6d80cea1ec45b1676589b2234cd, type: 2}
-  factionOverview: Filler Text for Humanity
+  factionOverview: From the Sol system, Humanity is the newest interplanetary power
+    in the galactic system. Their space program emphasizes technological progress
+    and metallic ships.
   leaderPortrait: {fileID: 0}
   hoverText: Filler Text

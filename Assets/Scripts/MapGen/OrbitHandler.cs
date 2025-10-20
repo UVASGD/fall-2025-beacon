@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class OrbitHandler : MonoBehaviour
 {
+    public static OrbitHandler Instance;
+
     [SerializeField] List<OrbitalData> orbits;
     private List<GameObject> instantiatedOrbits;
     [SerializeField] CaptureChance bodyCaptureChance;
     void Awake()
     {
+        Instance = this;
+
         Vector3 center = this.transform.position;
 
         instantiatedOrbits = new List<GameObject>(); //references to the instantiated orbits
@@ -17,7 +20,7 @@ public class OrbitHandler : MonoBehaviour
         foreach (var orbit in orbits)
         {
             var orbitingBody = Instantiate(orbit.associatedPlanet);
-
+            orbit.RandomizePhasePercent();
             instantiatedOrbits.Add(orbitingBody);
 
             placePlanetaryOrbit(orbitingBody, orbit);
@@ -29,13 +32,63 @@ public class OrbitHandler : MonoBehaviour
     }
     public void Update()
     {
+        //only if the wavestate is active
+        if (WaveManager.Singleton.waveState == WaveState.Inactive)
+            return;
         //orbit the planet relative to its phase length
         for (int i = 0; i < instantiatedOrbits.Count; i++)
         {
-            orbits[i].IncrementOrbitalProgress(Time.deltaTime);
+            //Developer note: Disabling orbits for gameplay testing
+            //orbits[i].IncrementOrbitalProgress(Time.deltaTime);
 
-            placePlanetaryOrbit(instantiatedOrbits[i], orbits[i]);
+            //placePlanetaryOrbit(instantiatedOrbits[i], orbits[i]);
         }
+    }
+
+    //Randomly places target away from others
+    public static void PlaceOnGrid(Transform target, List<Transform> others, int gridSize, float cellSize, float minDistance, bool gridSizeIsEven)
+    {
+        if (target == null) return;
+        if (gridSize <= 0) return;
+
+        // Centered grid — calculate extents
+        int half = gridSize / 2;
+
+        const int maxAttempts = 1000;
+        int attempts = 0;
+
+        while (attempts < maxAttempts)
+        {
+            attempts++;
+
+            // Pick a random grid coordinate (aligned to grid)
+            int xCell = Random.Range(-half, half + 1);
+            int zCell = Random.Range(-half, half + 1);
+
+            Vector3 newPos = new Vector3(xCell * cellSize, 0f, zCell * cellSize);
+            if(gridSizeIsEven)
+                newPos -= (Vector3.right * cellSize / 2f + Vector3.forward * cellSize / 2f);
+
+            // Check distance from all others
+            bool tooClose = false;
+            foreach (Transform t in others)
+            {
+                if (t == null || t == target) continue;
+                if (Vector3.Distance(newPos, t.position) < minDistance)
+                {
+                    tooClose = true;
+                    break;
+                }
+            }
+
+            if (!tooClose)
+            {
+                target.position = newPos;
+                return;
+            }
+        }
+
+        Debug.LogWarning($"[GridPlacer] Could not find a valid position for {target.name} after {maxAttempts} attempts.");
     }
 
     public void OnTurnEnd()
@@ -45,6 +98,18 @@ public class OrbitHandler : MonoBehaviour
 
     private void placePlanetaryOrbit(GameObject orbitingBody, OrbitalData orbit)
     {
+        List<Transform> orbitTransforms = new List<Transform>();
+        foreach(var _orbit in orbits)
+        {
+            orbitTransforms.Add(_orbit.associatedPlanet.transform);
+        }
+        orbitTransforms.Add(HomePlanetController.i.transform);
+        orbitingBody.AddComponent<PlanetaryHealth>().SetMaxHealth(orbit.PlanetMaxHealth);
+        orbitingBody.GetComponent<PlanetaryHealth>().TopOffHealth();
+        orbit.orbitingPlanet = orbitingBody;    
+        PlaceOnGrid(orbitingBody.transform, orbitTransforms, 25, 4, orbit.OrbitalDistance / 2f, orbit.BuildingSize % 2 == 0);
+
+        return;
         Vector3 center = this.transform.position;
         float angle = orbit.phasePercent * 2 * Mathf.PI; //calculating the relative angle
         Vector3 offset = new Vector3(
@@ -52,7 +117,8 @@ public class OrbitHandler : MonoBehaviour
                 0f,
                 orbit.OrbitalDistance * Mathf.Sin(angle)
         );
-
+        orbitingBody.AddComponent<PlanetaryHealth>().SetMaxHealth(orbit.PlanetMaxHealth);
+        orbitingBody.GetComponent<PlanetaryHealth>().TopOffHealth();
         orbitingBody.transform.position = center + offset;
     }
 
@@ -111,5 +177,47 @@ public class OrbitHandler : MonoBehaviour
 
         //return mean + the appropriate number of deviations
         return mean + randStdNormal * stdDev;
+    }
+
+    //Returns an orbital data associated with supplied gameObject. Returns null if none are associated.
+    public OrbitalData GetOrbitalDataOfPlanet(GameObject associatedPlanet)
+    {
+        foreach (var orbData in orbits)
+        {
+            if (orbData.orbitingPlanet == associatedPlanet) //This is CORRECT, even though variable names don't match
+                return orbData;
+        }
+        return null;
+    }
+
+    public Transform GetClosestPlanetToPosition(Vector3 position)
+    {
+        float closestDistance = Mathf.Infinity;
+        Transform closestTransform = null;
+        foreach(var orbData in orbits)
+        {
+            float distance = Vector3.Distance(position, orbData.associatedPlanet.transform.position);
+            if(distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestTransform = orbData.associatedPlanet.transform;  
+            }
+        }
+
+        return closestTransform;
+    }
+
+    public void RemoveOrbitalData(GameObject orbitingBody)
+    {
+        OrbitalData orbitalDataToRemove = null;
+        foreach(var orbData in orbits)
+        {
+            if(orbData.orbitingPlanet == orbitingBody)
+            {
+                orbitalDataToRemove = orbData;
+            }
+        }
+
+        orbits.Remove(orbitalDataToRemove);
     }
 }

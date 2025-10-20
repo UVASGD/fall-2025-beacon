@@ -15,3 +15,8 @@ MonoBehaviour:
   basePlanetSprites:
   - {fileID: 21300000, guid: 108a9fb48f4a69942b4f1e58e1a536e5, type: 3}
   maxPlanetHealth: 1000
+  bodyData:
+    bodyName: Earth
+    population: 2147483647
+    baseOreContent: 100
+    planetIcon: {fileID: 21300000, guid: 108a9fb48f4a69942b4f1e58e1a536e5, type: 3}

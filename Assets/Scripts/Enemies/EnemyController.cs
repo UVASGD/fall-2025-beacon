@@ -66,7 +66,7 @@ public class EnemyController : MonoBehaviour
         Collider[] hits = Physics.OverlapSphere(transform.position, aggroRadius, targetableLayers);
         if(hits.Length == 0)
         {
-            target = HomePlanetController.i.transform;
+            target = PlanetaryHealth.GetClosestPlanetaryHealth(transform.position).transform;
         }
         else
         {
@@ -88,7 +88,7 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                target = HomePlanetController.i.transform;
+                target = PlanetaryHealth.GetClosestPlanetaryHealth(transform.position).transform;
             }
         }
         weaponController.target = target;

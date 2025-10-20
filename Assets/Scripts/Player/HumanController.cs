@@ -32,7 +32,7 @@ public class HumanController : MonoBehaviour
             swarmController.isMoving = true;
             swarmController.moveDirection = desiredMoveDirection;
             transform.position += desiredMoveDirection * Mathf.Min(speed * Time.deltaTime, distanceToBeacon);
-            weaponController.SetEnableShooting(false);
+            weaponController.SetEnableShooting(true);
         }
         else
         {

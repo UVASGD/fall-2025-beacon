@@ -56,4 +56,10 @@ public class LevelController : MonoBehaviour
         }
         UpdateDisplay();
     }
+
+    private void OnDestroy()
+    {
+        WaveManager.Singleton.onWaveFinished -= OnWaveEnd;
+        WaveManager.Singleton.onWaveStart -= OnWaveStart;
+    }
 }

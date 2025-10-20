@@ -10,6 +10,7 @@ public class WaveManager : MonoBehaviour
     public List<GameObject> portals = new List<GameObject>();
     public float spawnInBetweenTime = 1f;
     public GameObject startNextWaveButton;
+    public GameObject portalPrefab;
 
     public delegate void Simple();
     public event Simple onWaveFinished;
@@ -22,14 +23,16 @@ public class WaveManager : MonoBehaviour
     private int remainingEnemies = 0;
     private bool waveInProgress;
 
+
+    public WaveState waveState { get; private set; }
     private void Awake()
     {
-        Singleton = this;   
+        Singleton = this;
     }
 
     private void Start()
     {
-
+        waveState = WaveState.Inactive;
     }
 
     private void Update()
@@ -39,6 +42,7 @@ public class WaveManager : MonoBehaviour
             waveInProgress = false;
             if(onWaveFinished != null)
             {
+                waveState = WaveState.Inactive;
                 onWaveFinished();
             }
         }
@@ -51,9 +55,11 @@ public class WaveManager : MonoBehaviour
 
     public void StartNewWave()
     {
+        SpawnNewPortals();
         startNextWaveButton.SetActive(false);
         if (onWaveStart != null)
         {
+            waveState = WaveState.Active;
             onWaveStart();
         }
         int enemiesToAssign = waveCount * portals.Count;
@@ -77,6 +83,23 @@ public class WaveManager : MonoBehaviour
         waveInProgress = true;
     }
 
+    private void SpawnNewPortals()
+    {
+        foreach(var portal in portals)
+        {
+            Destroy(portal);
+        }
+
+        int portalCount = 4;
+        List<GameObject> allOrbitingBodies = new List<GameObject>();
+        foreach(var health in PlanetaryHealth.planetaryHealths)
+        {
+            allOrbitingBodies.Add(health.gameObject);
+        }
+        List<GameObject> newPortals = PrefabPlacementHelper.PlacePrefabs(portalPrefab, portalCount, 20f, 80f, allOrbitingBodies);
+        portals = newPortals;   
+    }
+
     public void OnEnemySpawn()
     {
         remainingEnemies++;
@@ -96,6 +119,8 @@ public class WaveManager : MonoBehaviour
             yield return new WaitForSeconds(spawnInBetweenTime);
             currentIndex++;
         }
+        yield return new WaitForSeconds(1f);
+        portal.GetComponent<SmoothRandomRotateAndScale>().ShrinkAndDestroy();
     }
 
     public int CountIntegerInArray(int targetInteger, int[] integerArray)
@@ -143,4 +168,10 @@ public class WaveManager : MonoBehaviour
         }
         return returnSum;
     }
+}
+
+public enum WaveState
+{
+    Active,
+    Inactive //used to pause orbits if the wavestate is inactive (during the build/place phase)
 }

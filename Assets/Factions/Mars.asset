@@ -15,16 +15,20 @@ MonoBehaviour:
   factionName: Independent Mars
   factionAdjective: Martian
   factionID: 1
-  factionIcon: {fileID: 21300000, guid: 3c1a4e0567744814e960d0f1608d0fbf, type: 3}
+  factionIcon: {fileID: 21300000, guid: b9195fbc088dc064d9eb0ef23e480d12, type: 3}
   factionBuildings:
-  - {fileID: 11400000, guid: d9c58a7cb94ec4c4595e9a4b8dca7132, type: 2}
-  - {fileID: 11400000, guid: ad696a577302f714f874666cbe07fc45, type: 2}
-  - {fileID: 11400000, guid: 414a968f4508d034d8b5253de8cea4fa, type: 2}
+  - {fileID: 11400000, guid: ee19bc70a2c46d1428f33d7f436cb215, type: 2}
+  - {fileID: 11400000, guid: aeed4b573f52088479161e29e93fd7e4, type: 2}
+  - {fileID: 11400000, guid: 9407b3ac74b69eb418704cc1836401b7, type: 2}
+  - {fileID: 11400000, guid: 8e4279b722abf044c9c9eed0b38e2973, type: 2}
   startingBuildings:
-  - {fileID: 11400000, guid: 414a968f4508d034d8b5253de8cea4fa, type: 2}
-  - {fileID: 11400000, guid: 414a968f4508d034d8b5253de8cea4fa, type: 2}
-  - {fileID: 11400000, guid: 414a968f4508d034d8b5253de8cea4fa, type: 2}
+  - {fileID: 11400000, guid: ee19bc70a2c46d1428f33d7f436cb215, type: 2}
+  - {fileID: 11400000, guid: ee19bc70a2c46d1428f33d7f436cb215, type: 2}
+  - {fileID: 11400000, guid: 9407b3ac74b69eb418704cc1836401b7, type: 2}
   homePlanet: {fileID: 11400000, guid: adba0de451f533840834e5253282fe3b, type: 2}
-  factionOverview: Martian overview text.
+  factionOverview: The Martians declared independence from Earth's rule nearly 50
+    years ago. Their goals are galactic autonomy, at the cost of war with all who
+    stand in their way. Their status as a major planet is disregarded by most, and
+    the Martians will have a tough time surviving the coming war.
   leaderPortrait: {fileID: 21300000, guid: da354c3a2c0ff4a4da2cffa8c824bc58, type: 3}
   hoverText: Martian hover text

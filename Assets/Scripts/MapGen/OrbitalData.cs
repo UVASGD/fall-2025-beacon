@@ -11,13 +11,18 @@ public class OrbitalData //contains data for child orbits that are contained in 
     [SerializeField] int orbitalDistance;
     public float phasePercent => phaseProgress / phaseLength;
     [SerializeField] public GameObject associatedPlanet;
+    [SerializeField] public GameObject orbitingPlanet; //GameObject of orbital in game, NOT a prefab
 
     [SerializeField] bool counterClockwise = true; //if false, this body orbits in retrograde
     [SerializeField] float baseOreContent;
+    [SerializeField] int planetMaxHealth;
+    [SerializeField] int buildingSize;
 
     public int PhaseLength => phaseLength;
     public int OrbitalDistance => orbitalDistance;
     public float BaseOreContent => baseOreContent;
+    public int PlanetMaxHealth => planetMaxHealth;
+    public int BuildingSize => buildingSize;    
     public void IncrementOrbitalProgress(float timeDelta)
     {
         if (counterClockwise)
@@ -29,5 +34,25 @@ public class OrbitalData //contains data for child orbits that are contained in 
         {
             phaseProgress -= phaseLength; //to reduce progress back to below its phase length
         }
+    }
+
+    public void SetBuildingSize(int setTo)
+    {
+        buildingSize = setTo;
+    }
+
+    public void SetPlanetMaxHealth(int setTo)
+    {
+        planetMaxHealth = setTo;
+    }
+
+    public void SetBaseOreContent(int setTo)
+    {
+        baseOreContent = setTo;
+    }
+
+    public void RandomizePhasePercent()
+    {
+        phaseProgress = Mathf.RoundToInt(phaseLength * UnityEngine.Random.Range(0f, 1f));
     }
 }
