@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlanetaryHealth : MonoBehaviour, IHealth
 {
-    public static List<PlanetaryHealth> planetaryHealths = new List<PlanetaryHealth>(); 
+    public static List<PlanetaryHealth> planetaryHealths = new List<PlanetaryHealth>();
 
     [SerializeField] private float health = 100;
     [SerializeField] private float maxHealth = 100;
     public Bar bar;
+
+    [Header("Planetary Hit Flash")]
+    [SerializeField] private SpriteRenderer planetRenderer; //so the planet can hitFlash red on impact
 
     void Awake()
     {
@@ -17,7 +20,7 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
 
     void Start()
     {
-        if(bar != null)
+        if (bar != null)
         {
             bar.SetMaxValue(maxHealth);
             bar.SetValue(health);
@@ -33,12 +36,18 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
     {
         health += change;
         health = Mathf.Clamp(health, 0, maxHealth);
-        if(bar != null) 
+        if (bar != null)
             bar.SetValue(health);
 
-        if(health <= 0 && GetComponent<HomePlanetController>() == null)
+        if (health <= 0 && GetComponent<HomePlanetController>() == null)
         {
             Destroy(gameObject);
+        }
+
+        if(change < 0 && planetRenderer != null) //null check prevents exception if not assigned
+        {
+            //perform a damage hitflash
+            StartCoroutine(ColorFlash(GlobalSettings.i.HitFlashColor));
         }
     }
 
@@ -57,10 +66,10 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
         PlanetaryHealth closest = null;
         float closestDistance = Mathf.Infinity;
 
-        foreach(var health in planetaryHealths)
+        foreach (var health in planetaryHealths)
         {
             float distance = Vector3.Distance(position, health.transform.position);
-            if(distance < closestDistance)
+            if (distance < closestDistance)
             {
                 closest = health;
                 closestDistance = distance;
@@ -74,5 +83,21 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
     {
         planetaryHealths.Remove(this);
         OrbitHandler.Instance.RemoveOrbitalData(this.gameObject);
+    }
+
+    private IEnumerator ColorFlash(Color flashColor)
+    {
+        planetRenderer.color = flashColor;
+        yield return new WaitForSeconds(0.25f);
+        planetRenderer.color = Color.white;
+        yield return new WaitForSeconds(0.25f);
+        planetRenderer.color = flashColor;
+        yield return new WaitForSeconds(0.25f);
+        planetRenderer.color = Color.white;
+    }
+
+    public void SetRenderer(SpriteRenderer renderer)
+    {
+        planetRenderer = renderer;
     }
 }

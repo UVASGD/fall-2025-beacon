@@ -30,8 +30,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3734219491917459313}
   - {fileID: 6181830170518625088}
+  - {fileID: 3734219491917459313}
   - {fileID: 4087719662386415506}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,10 +52,19 @@ MonoBehaviour:
     phaseProgress: 0
     orbitalDistance: 30
     associatedPlanet: {fileID: 1757687330222153945}
+    orbitingPlanet: {fileID: 0}
     counterClockwise: 0
+    baseOreContent: 0
+    planetMaxHealth: 0
+    buildingSize: 0
   mainRenderer: {fileID: 2202842222321673443}
   buildableArea: {fileID: 1154872866795385942}
   buildableAreaRenderer: {fileID: 7942876844526127968}
+  bodyData:
+    bodyName: 
+    population: 
+    baseOreContent: 0
+    planetIcon: {fileID: 0}
 --- !u!1 &5548534862632202191
 GameObject:
   m_ObjectHideFlags: 0

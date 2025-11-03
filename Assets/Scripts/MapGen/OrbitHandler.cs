@@ -51,7 +51,7 @@ public class OrbitHandler : MonoBehaviour
         if (target == null) return;
         if (gridSize <= 0) return;
 
-        // Centered grid — calculate extents
+        // Centered grid ï¿½ calculate extents
         int half = gridSize / 2;
 
         const int maxAttempts = 1000;
@@ -104,12 +104,15 @@ public class OrbitHandler : MonoBehaviour
             orbitTransforms.Add(_orbit.associatedPlanet.transform);
         }
         orbitTransforms.Add(HomePlanetController.i.transform);
-        orbitingBody.AddComponent<PlanetaryHealth>().SetMaxHealth(orbit.PlanetMaxHealth);
-        orbitingBody.GetComponent<PlanetaryHealth>().TopOffHealth();
+        var planetHealth = orbitingBody.AddComponent<PlanetaryHealth>(); //storing planetHealth to remove additional calls to getComponent (as this is slow in realtime)
+        planetHealth.SetMaxHealth(orbit.PlanetMaxHealth);
+        planetHealth.TopOffHealth();
+        planetHealth.SetRenderer(orbitingBody.GetComponentInChildren<SpriteRenderer>()); //configuring the hitflash (make sure orbiting bodies have their mesh as the earliest child possible)
         orbit.orbitingPlanet = orbitingBody;    
         PlaceOnGrid(orbitingBody.transform, orbitTransforms, 25, 4, orbit.OrbitalDistance / 2f, orbit.BuildingSize % 2 == 0);
 
         return;
+        /* commenting out this unreachable code
         Vector3 center = this.transform.position;
         float angle = orbit.phasePercent * 2 * Mathf.PI; //calculating the relative angle
         Vector3 offset = new Vector3(
@@ -120,10 +123,8 @@ public class OrbitHandler : MonoBehaviour
         orbitingBody.AddComponent<PlanetaryHealth>().SetMaxHealth(orbit.PlanetMaxHealth);
         orbitingBody.GetComponent<PlanetaryHealth>().TopOffHealth();
         orbitingBody.transform.position = center + offset;
+        */
     }
-
-    //Rant time: WHY are the axes in this project incorrect? Why is Z up/down instead of the Y axis??? Who made this decision? Rant over.
-
     private float previousValue;
     private bool usePrevious = false;
     public void AsteroidChance()
