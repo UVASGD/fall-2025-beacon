@@ -12,6 +12,8 @@ public class SpawnedAsteroid : MonoBehaviour
     [SerializeField] CelestialBodyData bodyData;
     public OrbitalData OrbitalData => orbitalData;
 
+    public const int DEFAULTORECONTENT = 40;
+
     public void InitializeAsteroid(float asteroidScale)
     {
         int spriteIndex = 0;
@@ -19,32 +21,32 @@ public class SpawnedAsteroid : MonoBehaviour
         {
             case < 0.75f:
                 spriteIndex = 0;
-                orbitalData.SetBaseOreContent(Random.Range(1, 100));
+                orbitalData.SetBaseOreContent(DEFAULTORECONTENT);
                 orbitalData.SetPlanetMaxHealth(100);
                 break;
             case < 1.25f:
                 spriteIndex = 1;
-                orbitalData.SetBaseOreContent(Random.Range(50, 250));
+                orbitalData.SetBaseOreContent(DEFAULTORECONTENT);
                 orbitalData.SetPlanetMaxHealth(150);
                 break;
             case < 2.5f:
                 spriteIndex = 2;
-                orbitalData.SetBaseOreContent(Random.Range(150, 400));
+                orbitalData.SetBaseOreContent(DEFAULTORECONTENT);
                 orbitalData.SetPlanetMaxHealth(200);
                 break;
             case < 3.5f:
                 spriteIndex = 3;
-                orbitalData.SetBaseOreContent(Random.Range(250, 550));
+                orbitalData.SetBaseOreContent(DEFAULTORECONTENT);
                 orbitalData.SetPlanetMaxHealth(250);
                 break;
             case < 4.5f:
                 spriteIndex = 4;
-                orbitalData.SetBaseOreContent(Random.Range(300, 650));
+                orbitalData.SetBaseOreContent(DEFAULTORECONTENT);
                 orbitalData.SetPlanetMaxHealth(300);
                 break;
             default:
                 spriteIndex = 5;
-                orbitalData.SetBaseOreContent(Random.Range(350, 800));
+                orbitalData.SetBaseOreContent(DEFAULTORECONTENT);
                 orbitalData.SetPlanetMaxHealth(350);
                 break;
         }
