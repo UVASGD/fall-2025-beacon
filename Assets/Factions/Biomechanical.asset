@@ -17,11 +17,15 @@ MonoBehaviour:
   factionID: 2
   factionIcon: {fileID: 21300000, guid: 5abbde5f40d02f548a031cf6b3e77fb2, type: 3}
   factionBuildings:
-  - {fileID: 11400000, guid: d9c58a7cb94ec4c4595e9a4b8dca7132, type: 2}
-  - {fileID: 11400000, guid: ad696a577302f714f874666cbe07fc45, type: 2}
-  - {fileID: 11400000, guid: 894e744bb7de5ee4b8a1500e456085ff, type: 2}
+  - {fileID: 11400000, guid: 91fc5bf910c808c46b430535e23bc2ca, type: 2}
+  - {fileID: 11400000, guid: 57c9fb92d893c98409761a227f98f243, type: 2}
+  - {fileID: 11400000, guid: dff1b3fe954bc8e44b695b80b019a46a, type: 2}
+  - {fileID: 11400000, guid: 1e626b2a30dddc24684eb65a39920d6e, type: 2}
+  - {fileID: 11400000, guid: c63ed15b61c8db34880fed83c208e968, type: 2}
   startingBuildings:
-  - {fileID: 11400000, guid: d9c58a7cb94ec4c4595e9a4b8dca7132, type: 2}
+  - {fileID: 11400000, guid: 91fc5bf910c808c46b430535e23bc2ca, type: 2}
+  - {fileID: 11400000, guid: 91fc5bf910c808c46b430535e23bc2ca, type: 2}
+  - {fileID: 11400000, guid: dff1b3fe954bc8e44b695b80b019a46a, type: 2}
   homePlanet: {fileID: 11400000, guid: 7f9d0150ca120d246ada149643551143, type: 2}
   factionOverview: The biomechs are known for their worship of the cell. They imitate
     its structure in their ships, and wish to spread it throughout the galaxy.

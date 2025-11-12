@@ -8,7 +8,14 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
 
     [SerializeField] private float health = 100;
     [SerializeField] private float maxHealth = 100;
+    private float shield = 0;
     public Bar bar;
+
+    private int healingBuildings = 0;
+    private int shieldBuildings = 0;
+    private int mineLayingBuidlings = 0;
+
+    private int mines = 0;
 
     void Awake()
     {
@@ -22,6 +29,41 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
             bar.SetMaxValue(maxHealth);
             bar.SetValue(health);
         }
+
+        WaveManager.Singleton.onWaveFinished += OnWaveFinished;
+    }
+
+    public void OnWaveFinished()
+    {
+        ChangeHealth(3f * healingBuildings);
+        SetShield(5f * shieldBuildings);
+        AddMines(5 * mineLayingBuidlings);  
+    }
+
+    public void AddHealingBuilding()
+    {
+        healingBuildings++; 
+    }
+
+    public void AddShieldBuilding()
+    {
+        shieldBuildings++;
+    }
+
+    public void AddMineLayingBuilding()
+    {
+        mineLayingBuidlings++;
+    }
+
+    private int MaxMines()
+    {
+        return mineLayingBuidlings * 10;
+    }
+
+    public void AddMines(int toAdd)
+    {
+        mines += toAdd;
+        mines = Mathf.Clamp(mines, 0, MaxMines());
     }
 
     public float GetHealth()
@@ -29,8 +71,21 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
         return health;
     }
 
-    public void ChangeHealth(float change)
+    public void SetShield(float setTo)
     {
+        shield = setTo; 
+    }
+
+    public float ChangeHealth(float change)
+    {
+        //Reduce negative change by shield amount
+        if (change < 0)
+        {
+            float reducedDamage = Mathf.Min(-change, shield);
+            shield -= reducedDamage;
+            change += reducedDamage;
+        }
+
         health += change;
         health = Mathf.Clamp(health, 0, maxHealth);
         if(bar != null) 
@@ -40,6 +95,15 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
         {
             Destroy(gameObject);
         }
+
+        float returnDamage = 0f;
+        if (mines > 0)
+        {
+            mines--;
+            returnDamage += 10f; //Damage of mines
+        }
+
+        return returnDamage;
     }
 
     public void SetMaxHealth(int newMaxHealth) //sets the max health of a PlanetaryHealth. Accessed by a homePlanetController when instantiating a new planet.

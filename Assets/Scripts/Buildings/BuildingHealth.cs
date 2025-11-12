@@ -13,9 +13,11 @@ public class BuildingHealth : MonoBehaviour, IHealth
         return health;
     }
 
-    public void ChangeHealth(float change)
+    public float ChangeHealth(float change)
     {
         health += change;
         health = Mathf.Clamp(health, 0, maxHealth);
+
+        return 0f;
     }
 }

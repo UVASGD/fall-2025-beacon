@@ -7,14 +7,16 @@ public class ProjectileController : MonoBehaviour
     private Transform target;
     private float speed;
     private float damage;
+    private IHealth returnDamageHealth;
 
     private float travelDistance;
     
-    public void Initialize(Transform _target, float _speed, float _damage)
+    public void Initialize(Transform _target, float _speed, float _damage, IHealth _returnDamageHealth = null)
     {
         target = _target;
         speed = _speed;
         damage = _damage;
+        returnDamageHealth = _returnDamageHealth;
     }
 
     private void FixedUpdate()
@@ -36,7 +38,8 @@ public class ProjectileController : MonoBehaviour
         if(Vector3.Distance(transform.position, target.position) < 0.05f)
         {
             //Hit
-            target.GetComponent<IHealth>().ChangeHealth(-damage);
+            float returnDam = target.GetComponent<IHealth>().ChangeHealth(-damage);
+            returnDamageHealth.ChangeHealth(-returnDam);
             Destroy(gameObject);
         }
         else

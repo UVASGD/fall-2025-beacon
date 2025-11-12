@@ -15,7 +15,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
         return health;
     }
 
-    public void ChangeHealth(float change)
+    public float ChangeHealth(float change)
     {
         health += change;
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -26,5 +26,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
             OnEnemyKilled?.Invoke(defeatBonus);
             Destroy(gameObject);
         }
+
+        return 0f;
     }
 }

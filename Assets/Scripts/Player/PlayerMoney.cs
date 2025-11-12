@@ -71,6 +71,10 @@ public class PlayerMoney : MonoBehaviour
         {
             total += mine.GetMiningMoney();
         }
+        foreach(var cracker in PlanetCracker.crackerControllers)
+        {
+            total += cracker.GetCrackingMoney();
+        }
         return total;
     }
 
