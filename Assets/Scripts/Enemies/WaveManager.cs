@@ -55,6 +55,11 @@ public class WaveManager : MonoBehaviour
 
     public void StartNewWave()
     {
+        if(PlayerBuildings.Instance.GetBuildings().Length != 0)
+        {
+            return;
+        }
+
         SpawnNewPortals();
         startNextWaveButton.SetActive(false);
         if (onWaveStart != null)
@@ -167,6 +172,17 @@ public class WaveManager : MonoBehaviour
             returnSum += i;
         }
         return returnSum;
+    }
+
+    public int GetFinishedWaveCount()
+    {
+        return waveCount - 2;
+    }
+
+    private void OnDestroy()
+    {
+        onWaveFinished = null;
+        onWaveStart = null;
     }
 }
 

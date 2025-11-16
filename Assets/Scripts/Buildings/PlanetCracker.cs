@@ -6,7 +6,8 @@ public class PlanetCracker : MonoBehaviour
 {
     public static List<PlanetCracker> crackerControllers = new List<PlanetCracker>();
 
-    OrbitalData associatedOrbitalData;
+    GameObject associatedPlanet;
+    bool onMainPlanet;
 
     void Awake()
     {
@@ -19,15 +20,25 @@ public class PlanetCracker : MonoBehaviour
         Collider[] hits = Physics.OverlapBox(transform.position, Vector3.one * 0.5f, Quaternion.identity, LayerMask.GetMask("BuildableArea"));
         //Debug.Log($"Name of hit collider: {hits[0].transform.name}");
         GameObject hitObject = hits[0].transform.parent.gameObject;
-        OrbitalData orbitalData = OrbitHandler.Instance.GetOrbitalDataOfPlanet(hitObject);
-        if (orbitalData != null)
-            associatedOrbitalData = orbitalData;
+        associatedPlanet = hitObject;
+        onMainPlanet = hitObject.GetComponent<HomePlanetController>() != null;
     }
 
     public int GetCrackingMoney()
     {
-        associatedOrbitalData.associatedPlanet.GetComponent<PlanetaryHealth>().ChangeHealth(-20f);
-        return Mathf.RoundToInt(associatedOrbitalData.BaseOreContent * 0.40f);
+        int crackingDamage = 20;
+
+        var crackMod = .2f;
+        var associatedPlanetaryHealth = GetComponent<PlanetaryHealth>();
+        if(associatedPlanetaryHealth.GetHealth() > crackingDamage * 2f)
+        {
+            associatedPlanetaryHealth.ChangeHealth(-crackingDamage);
+            crackMod *= 2f;
+        }
+
+        var mainPlanetMod = onMainPlanet ? 0.25f : 1f;
+
+        return Mathf.RoundToInt(SpawnedAsteroid.DEFAULTORECONTENT * crackMod * mainPlanetMod);
     }
 
     private void OnDestroy()

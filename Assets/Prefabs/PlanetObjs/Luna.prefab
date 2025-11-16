@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 8892870432541138229}
   - component: {fileID: 5106060790731386988}
   - component: {fileID: 2744656216086717842}
+  - component: {fileID: 8451949124113017999}
   m_Layer: 11
   m_Name: Building BorderUI
   m_TagString: Untagged
@@ -249,7 +250,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   borderPiece: {fileID: 2965958887834430114}
-  borderDimensions: {x: 0, y: 0, z: 0}
 --- !u!65 &5106060790731386988
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -283,3 +283,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30964d8ca601fd64b98d70985b38f186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8451949124113017999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842249004521977805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a967d03930e5afd499c153b750035f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoText: Default Text

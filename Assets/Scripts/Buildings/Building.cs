@@ -7,4 +7,7 @@ public class Building : ScriptableObject
 {
     public GameObject buildingPrefab;
     public int moneyCost = 30;
+    public string description = "Empty building description";
+    public Sprite buildingSprite;
+    public Sprite turretSprite;
 }

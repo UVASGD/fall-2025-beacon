@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlanetaryHealth : MonoBehaviour, IHealth
 {
-    public static List<PlanetaryHealth> planetaryHealths = new List<PlanetaryHealth>(); 
+    public static List<PlanetaryHealth> planetaryHealths = new List<PlanetaryHealth>();
+    private static int killedPlanets = 0;
 
     [SerializeField] private float health = 100;
     [SerializeField] private float maxHealth = 100;
@@ -16,6 +17,8 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
     private int mineLayingBuidlings = 0;
 
     private int mines = 0;
+
+    private InfoToDisplayController mInfoToDisplayController;
 
     void Awake()
     {
@@ -29,15 +32,34 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
             bar.SetMaxValue(maxHealth);
             bar.SetValue(health);
         }
+        mInfoToDisplayController = GetComponentInChildren<InfoToDisplayController>();
 
         WaveManager.Singleton.onWaveFinished += OnWaveFinished;
+        WaveManager.Singleton.onWaveStart += OnWaveStart;   
+    }
+
+    void FixedUpdate()
+    {
+        mInfoToDisplayController.infoText = $"Shield: {Mathf.RoundToInt(shield)}/{MaxShields()}\nHealth: {Mathf.RoundToInt(health)}/{maxHealth}";
+    }
+
+    public static int GetAndResetKilledPlanets()
+    {
+        int toReturn = killedPlanets;
+        killedPlanets = 0;
+        return toReturn;
     }
 
     public void OnWaveFinished()
     {
-        ChangeHealth(3f * healingBuildings);
-        SetShield(5f * shieldBuildings);
-        AddMines(5 * mineLayingBuidlings);  
+
+    }
+
+    public void OnWaveStart()
+    {
+        ChangeHealth(10f * healingBuildings);
+        SetShield(MaxShields());
+        AddMines(5 * mineLayingBuidlings);
     }
 
     public void AddHealingBuilding()
@@ -53,6 +75,11 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
     public void AddMineLayingBuilding()
     {
         mineLayingBuidlings++;
+    }
+
+    private int MaxShields()
+    {
+        return 5 * shieldBuildings;
     }
 
     private int MaxMines()
@@ -138,5 +165,12 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
     {
         planetaryHealths.Remove(this);
         OrbitHandler.Instance.RemoveOrbitalData(this.gameObject);
+        WaveManager.Singleton.onWaveFinished -= OnWaveFinished;
+        WaveManager.Singleton.onWaveStart -= OnWaveStart;
+
+        if(GetComponent<HomePlanetController>() != null)
+        {
+            killedPlanets++;
+        }
     }
 }

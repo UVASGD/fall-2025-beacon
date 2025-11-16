@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingPrefab: {fileID: 4805577101797097787, guid: f7d60b35e425f734880d8147adfe42f4, type: 3}
   moneyCost: 30
+  description: Empty building description
+  buildingSprite: {fileID: 21300000, guid: e4c1f046e56bc0643a015017c066fdc8, type: 3}
+  turretSprite: {fileID: 0}

@@ -19,6 +19,6 @@ public class Minelayer : MonoBehaviour
         OrbitalData orbitalData = OrbitHandler.Instance.GetOrbitalDataOfPlanet(hitObject);
         if (orbitalData != null)
             associatedOrbitalData = orbitalData;
-        orbitalData.associatedPlanet.GetComponent<PlanetaryHealth>().AddMineLayingBuilding();
+        hitObject.GetComponent<PlanetaryHealth>().AddMineLayingBuilding();
     }
 }

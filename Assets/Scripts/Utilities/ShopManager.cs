@@ -86,18 +86,13 @@ public class ShopManager : MonoBehaviour
             buttonGO.transform.SetParent(buttonTemplatePrefab.transform.parent, false);
             buttonGO.SetActive(true);
             previousButtons.Add(buttonGO);
-            TMP_Text label = buttonGO.GetComponentInChildren<TMP_Text>();
+            
             int indexToSelect = currentIndex;
+            buttonGO.AddComponent<InfoToDisplayController>();
+            buttonGO.GetComponent<InfoToDisplayController>().infoText = building.description;
             buttonGO.GetComponent<Button>().onClick.RemoveAllListeners();
             buttonGO.GetComponent<Button>().onClick.AddListener(() => BuyBuilding(indexToSelect));
-            if (label != null)
-            {
-                label.text = $"{building.name} ({building.moneyCost})";
-            }
-            else
-            {
-                Debug.LogWarning("No TMP_Text found on button prefab.");
-            }
+            buttonGO.GetComponent<BuildingButtonController>().DisplayBuilding(building);
             currentIndex++;
         }
     }

@@ -47,7 +47,7 @@ public class PlayerPlacing : MonoBehaviour
     private void UpdateReferencePlanet(Transform reference)
     {
         planetReference = reference;
-        Debug.Log($"origin reference set to {reference.gameObject.name}");
+        //Debug.Log($"origin reference set to {reference.gameObject.name}");
     }
     public void OnWaveStart()
     {

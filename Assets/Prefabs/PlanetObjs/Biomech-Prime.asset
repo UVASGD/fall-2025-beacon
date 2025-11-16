@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basePlanetSprites:
   - {fileID: 21300000, guid: 5abbde5f40d02f548a031cf6b3e77fb2, type: 3}
-  maxPlanetHealth: 2000
+  maxPlanetHealth: 1000
   bodyData:
     bodyName: Biomech-Prime
     population: 10000000000

@@ -46,6 +46,7 @@ public class BeaconGrabber : MonoBehaviour
         {
             Vector3 point = mouseRay.GetPoint(distanceToPlane);
             grabbedBeacon.transform.position = point;
+            Physics.SyncTransforms();
         }
     }
 

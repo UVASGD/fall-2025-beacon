@@ -39,7 +39,8 @@ public class ProjectileController : MonoBehaviour
         {
             //Hit
             float returnDam = target.GetComponent<IHealth>().ChangeHealth(-damage);
-            returnDamageHealth.ChangeHealth(-returnDam);
+            if(returnDamageHealth != null)
+                returnDamageHealth.ChangeHealth(-returnDam);
             Destroy(gameObject);
         }
         else

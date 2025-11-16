@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ShieldGenerator : MonoBehaviour
 {
-    OrbitalData associatedOrbitalData;
-
     void Awake()
     {
         GetAssociatedOrbitalData();
@@ -16,9 +14,6 @@ public class ShieldGenerator : MonoBehaviour
         Collider[] hits = Physics.OverlapBox(transform.position, Vector3.one * 0.5f, Quaternion.identity, LayerMask.GetMask("BuildableArea"));
         //Debug.Log($"Name of hit collider: {hits[0].transform.name}");
         GameObject hitObject = hits[0].transform.parent.gameObject;
-        OrbitalData orbitalData = OrbitHandler.Instance.GetOrbitalDataOfPlanet(hitObject);
-        if (orbitalData != null)
-            associatedOrbitalData = orbitalData;
-        orbitalData.associatedPlanet.GetComponent<PlanetaryHealth>().AddShieldBuilding();
+        hitObject.GetComponent<PlanetaryHealth>().AddShieldBuilding();
     }
 }

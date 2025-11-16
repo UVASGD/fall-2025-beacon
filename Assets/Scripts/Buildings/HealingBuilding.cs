@@ -19,6 +19,6 @@ public class HealingBuilding : MonoBehaviour
         OrbitalData orbitalData = OrbitHandler.Instance.GetOrbitalDataOfPlanet(hitObject);
         if (orbitalData != null)
             associatedOrbitalData = orbitalData;
-        orbitalData.associatedPlanet.GetComponent<PlanetaryHealth>().AddHealingBuilding();
+        hitObject.GetComponent<PlanetaryHealth>().AddHealingBuilding();
     }
 }

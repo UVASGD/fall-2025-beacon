@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class PlayerMoney : MonoBehaviour
 {
+    public static PlayerMoney Instance;
+
     [SerializeField] private int money;
     public TMP_Text moneyText;
 
@@ -13,10 +15,13 @@ public class PlayerMoney : MonoBehaviour
     [SerializeField] List<PlanetIncome> taxedPlanets; //this is intentionally left as a list in case we have multiple planets for some reason
     private int defeatedEnemyIncome = 0;
     [SerializeField] EarnedMoneyList earnedMoneyUI;
+    private int totalIncome = 0;
+
     private void Start()
     {
+        Instance = this;
         WaveManager.Singleton.onWaveFinished += OnWaveEnd;
-        EnemyHealth.OnEnemyKilled += EnemyDefeatedBonus;
+        //EnemyHealth.OnEnemyKilled += EnemyDefeatedBonus;
         UpdateText();
     }
     
@@ -37,24 +42,16 @@ public class PlayerMoney : MonoBehaviour
     private IEnumerator CalculateRevenue() //calculations for end-of-wave revenue. This includes the base income, ships destroyed, a multiplier bonus depending on damage taken, etc.
     {
         int earnedIncome = 0;
-        int fromTaxation = 0;
         int fromMining = GetMiningMoney();
+        int fromTrade = GetTradingMoney();
 
-        //add income base on each planet's tax rate * planetary income
-        foreach (var planet in taxedPlanets)
-        {
-            fromTaxation += Mathf.FloorToInt((planet.TaxRate * planet.BasePlanetIncome));
-        }
-
-        earnedIncome += fromTaxation;
         earnedIncome += baseIncome;
-        earnedIncome += defeatedEnemyIncome;
         earnedIncome += fromMining;
+        earnedIncome += fromTrade;
+        totalIncome += earnedIncome;
 
         List<int> incomeSources = new List<int>();
         incomeSources.Add(baseIncome);
-        incomeSources.Add(fromTaxation); //from planetary taxation
-        incomeSources.Add(defeatedEnemyIncome); //from defeated enemies
         incomeSources.Add(fromMining); //mining money
 
         ChangeMoney(earnedIncome);
@@ -62,6 +59,11 @@ public class PlayerMoney : MonoBehaviour
         yield return earnedMoneyUI.EndTurnIncome(incomeSources, earnedIncome);
 
         defeatedEnemyIncome = 0;
+    }
+
+    private int GetTradingMoney()
+    {
+        return 0;
     }
 
     private int GetMiningMoney()
@@ -102,5 +104,10 @@ public class PlayerMoney : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public int GetTotalIncome()
+    {
+        return totalIncome;
     }
 }
