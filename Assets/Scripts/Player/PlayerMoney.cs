@@ -63,7 +63,7 @@ public class PlayerMoney : MonoBehaviour
 
     private int GetTradingMoney()
     {
-        return 0;
+        return TradeHubController.GetTradeMoney();
     }
 
     private int GetMiningMoney()

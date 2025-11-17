@@ -2261,7 +2261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 0
   moneyText: {fileID: 767910524}
-  baseIncome: 50
+  baseIncome: 60
   taxedPlanets:
   - {fileID: 1516526868}
   earnedMoneyUI: {fileID: 1739057615}

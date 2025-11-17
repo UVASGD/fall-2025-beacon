@@ -67,7 +67,7 @@ public class WaveManager : MonoBehaviour
             waveState = WaveState.Active;
             onWaveStart();
         }
-        int enemiesToAssign = waveCount * portals.Count;
+        int enemiesToAssign = (waveCount-1) + portals.Count;
         int[] portalsToSpawnCarrier = ReturnRandomIntegerArrayMinMax(waveCount / 3, 0, portals.Count);
         int[] toSpawnCounts = ReturnRandomIntegerArray(portals.Count, 1, enemiesToAssign);
         for(int i = 0; i < toSpawnCounts.Length; i++)

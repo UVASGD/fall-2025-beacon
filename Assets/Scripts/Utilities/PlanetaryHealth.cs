@@ -93,6 +93,11 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
         mines = Mathf.Clamp(mines, 0, MaxMines());
     }
 
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
     public float GetHealth()
     {
         return health;
