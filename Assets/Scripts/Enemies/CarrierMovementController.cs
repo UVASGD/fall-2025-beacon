@@ -25,7 +25,7 @@ public class CarrierMovementController : MonoBehaviour
     {
         if (moveSpeed <= 0f || centerPoint == null) return;
 
-        timer += Time.deltaTime;
+        timer += Time.deltaTime * GlobalSettings.i.TimeScale;
 
         if (timer >= changeTargetInterval || Vector3.Distance(transform.position, targetPosition) <= stoppingDistance)
         {

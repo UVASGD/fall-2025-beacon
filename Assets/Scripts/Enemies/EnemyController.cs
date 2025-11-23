@@ -30,6 +30,7 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        float adjustedTime = Time.deltaTime * GlobalSettings.i.TimeScale;
         if (target == null)
             UpdateTarget();
 
@@ -47,7 +48,7 @@ public class EnemyController : MonoBehaviour
             swarmController.isMoving = true;
             Vector3 desiredMoveDirection = (target.position - transform.position); desiredMoveDirection.y = 0;
             swarmController.moveDirection = desiredMoveDirection;
-            transform.position += desiredMoveDirection.normalized * moveSpeed * Time.deltaTime;
+            transform.position += desiredMoveDirection.normalized * moveSpeed * adjustedTime;
             weaponController.SetEnableShooting(false);
         }
     }

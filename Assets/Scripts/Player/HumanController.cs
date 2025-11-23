@@ -31,7 +31,7 @@ public class HumanController : MonoBehaviour
             Vector3 desiredMoveDirection = (beaconPosition - thisPosition).normalized;
             swarmController.isMoving = true;
             swarmController.moveDirection = desiredMoveDirection;
-            transform.position += desiredMoveDirection * Mathf.Min(speed * Time.deltaTime, distanceToBeacon);
+            transform.position += desiredMoveDirection * Mathf.Min(speed * Time.deltaTime * GlobalSettings.i.TimeScale, distanceToBeacon);
             weaponController.SetEnableShooting(true);
         }
         else

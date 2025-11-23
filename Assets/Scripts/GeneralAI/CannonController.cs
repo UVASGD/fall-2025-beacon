@@ -32,7 +32,7 @@ public class CannonController : MonoBehaviour
     {
         if (cooldown > 0f)
         {
-            cooldown -= Time.deltaTime;
+            cooldown -= Time.deltaTime * GlobalSettings.i.TimeScale;
             return;
         }
 

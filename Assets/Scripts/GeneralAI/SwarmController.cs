@@ -41,7 +41,7 @@ public class SwarmController : MonoBehaviour
 
                 Vector3 target = center + offset;
                 Vector3 direction = (target - model.position).normalized; direction.y = 0f;
-                model.position += model.forward * idleMoveSpeed * Time.deltaTime;
+                model.position += model.forward * idleMoveSpeed * Time.deltaTime * GlobalSettings.i.TimeScale;
                 model.rotation = Quaternion.Lerp(model.rotation, Quaternion.LookRotation(direction), Time.deltaTime * idleRotationSpeed);
             }
         }
