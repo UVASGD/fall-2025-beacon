@@ -9,6 +9,7 @@ public class FactionBase : ScriptableObject
     [SerializeField] string factionAdjective; //for use in dialogue popups
     [SerializeField] int factionID; //integer index of the faction, determining the ordering of the faction on the select screen
     [SerializeField] Sprite factionIcon;
+    [SerializeField] Vector2 factionIconSize = new Vector2(100f, 100f);
     [SerializeField] List<Building> factionBuildings; //list of relevant faction buildings
     [SerializeField] List<Building> startingBuildings; //buildings that are available for free round 1 placement
     [SerializeField] Planet homePlanet; //starting planet of the faction
@@ -24,6 +25,7 @@ public class FactionBase : ScriptableObject
     public string FactionAdjective => factionAdjective;
     public int FactionID => factionID;
     public Sprite FactionIcon => factionIcon;
+    public Vector2 FactionIconSize => factionIconSize;
     public List<Building> FactionBuildings => factionBuildings;
     public List<Building> StartingBuildings => startingBuildings;
     public Planet HomePlanet => homePlanet;

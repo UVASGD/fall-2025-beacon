@@ -98,7 +98,7 @@ public class PlayerPlacing : MonoBehaviour
         placingIcon.transform.position = placePosition;
         if (Input.GetMouseButtonDown(0))
         {
-            LevelController possibleLevelController = ValidLevelController(placePosition);
+            LevelController possibleLevelController = null; //ValidLevelController(placePosition);
             if (possibleLevelController != null)
             {
                 possibleLevelController.LevelUp();

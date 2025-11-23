@@ -16,6 +16,7 @@ MonoBehaviour:
   factionAdjective: Biomechanical
   factionID: 2
   factionIcon: {fileID: 21300000, guid: 5abbde5f40d02f548a031cf6b3e77fb2, type: 3}
+  factionIconSize: {x: 122, y: 100}
   factionBuildings:
   - {fileID: 11400000, guid: 91fc5bf910c808c46b430535e23bc2ca, type: 2}
   - {fileID: 11400000, guid: 57c9fb92d893c98409761a227f98f243, type: 2}

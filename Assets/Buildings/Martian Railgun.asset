@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Martian Railgun
   m_EditorClassIdentifier: 
+  name: Railgun
   buildingPrefab: {fileID: 26338123957728763, guid: f0e97d59f803f0a47872f354e29d8ab9, type: 3}
   moneyCost: 30
   description: Empty building description

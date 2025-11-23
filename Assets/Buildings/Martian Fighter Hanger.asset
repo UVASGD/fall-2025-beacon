@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Martian Fighter Hanger
   m_EditorClassIdentifier: 
+  name: Figher Hanger
   buildingPrefab: {fileID: 1787033128487334723, guid: 071110fb989bc6249a9763788b341e80, type: 3}
   moneyCost: 30
   description: Empty building description

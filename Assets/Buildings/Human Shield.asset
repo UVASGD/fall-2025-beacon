@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Human Shield
   m_EditorClassIdentifier: 
+  name: Shield Generator
   buildingPrefab: {fileID: 4077092175033800057, guid: 7f81ea6c7bee2ab4180f0b9b99e2e17b, type: 3}
   moneyCost: 30
   description: Empty building description

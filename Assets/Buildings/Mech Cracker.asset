@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Mech Cracker
   m_EditorClassIdentifier: 
+  name: Planet Cracker
   buildingPrefab: {fileID: 971175350270380630, guid: 50a20aa7d3c14704ea90d5ab80dd7b9b, type: 3}
   moneyCost: 30
   description: Empty building description

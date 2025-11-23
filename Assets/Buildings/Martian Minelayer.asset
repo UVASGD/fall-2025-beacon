@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Martian Minelayer
   m_EditorClassIdentifier: 
+  name: Minelayer
   buildingPrefab: {fileID: 4744389036507675846, guid: 450908584cb74294a8cfb3c2950275af, type: 3}
   moneyCost: 30
   description: Empty building description

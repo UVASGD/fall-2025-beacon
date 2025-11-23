@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Mech Fighter Hanger
   m_EditorClassIdentifier: 
+  name: Figher Hanger
   buildingPrefab: {fileID: 1822687173199700000, guid: 670de3b00dc41d14c85606ff54ab0ac4, type: 3}
   moneyCost: 30
   description: Empty building description

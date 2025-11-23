@@ -31,6 +31,8 @@ public class BuildingButtonGenerator : MonoBehaviour
             buttonGO.SetActive(true);
             previousButtons.Add(buttonGO);
             buttonGO.GetComponent<BuildingButtonController>().DisplayBuilding(building);
+            buttonGO.AddComponent<InfoToDisplayController>();
+            buttonGO.GetComponent<InfoToDisplayController>().infoText = building.description;
             int indexToSelect = currentIndex;
             buttonGO.GetComponent<Button>().onClick.AddListener(() => playerPlacing.SetSelectedIndex(indexToSelect));
             currentIndex++;

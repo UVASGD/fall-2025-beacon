@@ -8,6 +8,8 @@ public class MouseController : MonoBehaviour
     [Header("UI")]
     [Tooltip("TMP text used to display hovered info")]
     public TMP_Text infoDisplayText;
+    public RectTransform textRoot;
+    public RectTransform infoDisplayBackground;
 
     [Tooltip("The UI canvas that contains the infoDisplayText")]
     public Canvas canvas;
@@ -15,9 +17,6 @@ public class MouseController : MonoBehaviour
     [Header("Settings")]
     [Tooltip("Optional: LayerMask for world hoverable objects")]
     public LayerMask worldHoverMask = ~0;
-
-    [Tooltip("Offset of the tooltip from the mouse position (in pixels)")]
-    public Vector2 tooltipOffset = new Vector2(25f, -25f);
 
     private Camera mainCamera;
     private InfoToDisplayController currentInfo;
@@ -32,6 +31,8 @@ public class MouseController : MonoBehaviour
     {
         UpdateMouseFollow();
         CheckHoveredObject();
+        Vector2 padding = new Vector2(12f, 8f);
+        infoDisplayBackground.sizeDelta = infoDisplayText.rectTransform.sizeDelta + padding;
     }
 
     /// <summary>
@@ -42,7 +43,6 @@ public class MouseController : MonoBehaviour
         if (!infoDisplayText.gameObject.activeSelf) return;
 
         RectTransform canvasRect = canvas.transform as RectTransform;
-        RectTransform textRect = infoDisplayText.rectTransform;
 
         // Convert mouse position to local position in canvas space
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -52,16 +52,16 @@ public class MouseController : MonoBehaviour
             out Vector2 localPoint);
 
         // Apply offset (to the right and slightly down)
-        Vector2 finalPos = localPoint + tooltipOffset;
+        Vector2 finalPos = localPoint;
 
         // Optional: Clamp so tooltip stays on screen
         Vector2 canvasSize = canvasRect.sizeDelta;
-        Vector2 textSize = textRect.sizeDelta;
+        Vector2 textSize = infoDisplayText.GetComponent<RectTransform>().sizeDelta;
 
         finalPos.x = Mathf.Clamp(finalPos.x, -canvasSize.x / 2 + textSize.x / 2, canvasSize.x / 2 - textSize.x / 2);
         finalPos.y = Mathf.Clamp(finalPos.y, -canvasSize.y / 2 + textSize.y / 2, canvasSize.y / 2 - textSize.y / 2);
 
-        textRect.anchoredPosition = finalPos;
+        textRoot.anchoredPosition = finalPos;
     }
 
     /// <summary>
@@ -132,10 +132,12 @@ public class MouseController : MonoBehaviour
             UpdateMouseFollow();
             infoDisplayText.text = currentInfo.infoText;
             infoDisplayText.gameObject.SetActive(true);
+            infoDisplayBackground.gameObject.SetActive(true);
         }
         else
         {
             infoDisplayText.gameObject.SetActive(false);
+            infoDisplayBackground.gameObject.SetActive(false);
         }
     }
 }

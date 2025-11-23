@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Mech Cannon Turret
   m_EditorClassIdentifier: 
+  name: Cannon
   buildingPrefab: {fileID: 3611920911548372532, guid: fdf10d320d9207f4cba048693c36414e, type: 3}
   moneyCost: 30
   description: Empty building description

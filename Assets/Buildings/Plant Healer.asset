@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Plant Healer
   m_EditorClassIdentifier: 
+  name: Healer
   buildingPrefab: {fileID: 1324668049862070682, guid: a67aca83e784e6d4d90f8c067c46c212, type: 3}
   moneyCost: 30
   description: Empty building description

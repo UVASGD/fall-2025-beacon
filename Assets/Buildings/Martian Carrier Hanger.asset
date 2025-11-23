@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Martian Carrier Hanger
   m_EditorClassIdentifier: 
+  name: Carrier Hanger
   buildingPrefab: {fileID: 4251255176715899669, guid: d4a63d7289c223b4f93411f5618ed123, type: 3}
   moneyCost: 30
   description: Empty building description

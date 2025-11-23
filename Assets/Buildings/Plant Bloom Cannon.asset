@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Plant Bloom Cannon
   m_EditorClassIdentifier: 
+  name: Bloom Cannon
   buildingPrefab: {fileID: 6397617054976648691, guid: 570d89c154e172746a1e114d62a02720, type: 3}
   moneyCost: 30
   description: Empty building description

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Mech Rage Cannon
   m_EditorClassIdentifier: 
+  name: Rage Cannon
   buildingPrefab: {fileID: 4206575077355874815, guid: aa9ea5e13a560e540add4505c09df19e, type: 3}
   moneyCost: 30
   description: Empty building description

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Martian Cannon Turret
   m_EditorClassIdentifier: 
+  name: Cannon
   buildingPrefab: {fileID: 2932866177894216857, guid: 9604d235b460b6a4ebd7a0efb4d46b91, type: 3}
   moneyCost: 30
   description: Empty building description

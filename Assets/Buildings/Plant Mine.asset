@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Plant Mine
   m_EditorClassIdentifier: 
+  name: Money Mine
   buildingPrefab: {fileID: 4805577101797097787, guid: f7d60b35e425f734880d8147adfe42f4, type: 3}
   moneyCost: 30
   description: Empty building description

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Human Carrier Hanger
   m_EditorClassIdentifier: 
+  name: Carrier Hanger
   buildingPrefab: {fileID: 5425186641954149106, guid: 773c045493747c4408fad1980e955318, type: 3}
   moneyCost: 30
   description: Empty building description
