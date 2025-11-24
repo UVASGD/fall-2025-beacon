@@ -12,6 +12,9 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
 
     [Header("Planetary Hit Flash")]
     [SerializeField] private SpriteRenderer planetRenderer; //so the planet can hitFlash red on impact
+    private bool useWorldspaceBar = false;
+    private WorldSpaceHealthbar worldBar;
+    
 
     void Awake()
     {
@@ -49,8 +52,17 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
             //perform a damage hitflash
             StartCoroutine(ColorFlash(GlobalSettings.i.HitFlashColor));
         }
-    }
 
+        if (useWorldspaceBar)
+        {
+            worldBar.UpdateFill(health / maxHealth);
+        }
+    }
+    public void setWorldspaceBar(WorldSpaceHealthbar bar)
+    {
+        worldBar = bar;
+        useWorldspaceBar = true;
+    }
     public void SetMaxHealth(int newMaxHealth) //sets the max health of a PlanetaryHealth. Accessed by a homePlanetController when instantiating a new planet.
     {
         maxHealth = newMaxHealth;

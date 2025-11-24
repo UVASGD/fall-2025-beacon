@@ -4754,6 +4754,8 @@ MonoBehaviour:
   maxHealth: 1000
   bar: {fileID: 489066201}
   planetRenderer: {fileID: 798354075}
+  useWorldspaceBar: 0
+  worldBar: {fileID: 0}
 --- !u!114 &1516526868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4790,6 +4792,8 @@ MonoBehaviour:
     baseOreContent: 100
     planetMaxHealth: 200
     buildingSize: 2
+    healthBar: {fileID: 0}
+  worldspaceBarPrefab: {fileID: 333793395921834033, guid: 16f207191e41dcc439488baa9e4c075b, type: 3}
   bodyCaptureChance: {fileID: 11400000, guid: b0616daac3748814cba7076c90f73b80, type: 2}
 --- !u!114 &1516526870
 MonoBehaviour:

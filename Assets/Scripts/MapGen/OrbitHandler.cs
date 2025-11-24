@@ -7,6 +7,7 @@ public class OrbitHandler : MonoBehaviour
     public static OrbitHandler Instance;
 
     [SerializeField] List<OrbitalData> orbits;
+    [SerializeField] GameObject worldspaceBarPrefab;
     private List<GameObject> instantiatedOrbits;
     [SerializeField] CaptureChance bodyCaptureChance;
     void Awake()
@@ -107,6 +108,13 @@ public class OrbitHandler : MonoBehaviour
         var planetHealth = orbitingBody.AddComponent<PlanetaryHealth>(); //storing planetHealth to remove additional calls to getComponent (as this is slow in realtime)
         planetHealth.SetMaxHealth(orbit.PlanetMaxHealth);
         planetHealth.TopOffHealth();
+
+        //instantiate a worldspace health bar
+        WorldSpaceHealthbar bar = Instantiate(worldspaceBarPrefab).GetComponent<WorldSpaceHealthbar>(); //the whole handling of this system is pretty bad on my end
+        bar.gameObject.transform.SetParent(planetHealth.transform);
+        bar.gameObject.transform.localPosition = new Vector3(-2, 0, 3); //move it just above the planet
+        planetHealth.setWorldspaceBar(bar); //assign the bar in script
+
         planetHealth.SetRenderer(orbitingBody.GetComponentInChildren<SpriteRenderer>()); //configuring the hitflash (make sure orbiting bodies have their mesh as the earliest child possible)
         orbit.orbitingPlanet = orbitingBody;    
         PlaceOnGrid(orbitingBody.transform, orbitTransforms, 25, 4, orbit.OrbitalDistance / 2f, orbit.BuildingSize % 2 == 0);

@@ -18,6 +18,8 @@ public class OrbitalData //contains data for child orbits that are contained in 
     [SerializeField] int planetMaxHealth;
     [SerializeField] int buildingSize;
 
+    [SerializeField] WorldSpaceHealthbar healthBar;
+
     public int PhaseLength => phaseLength;
     public int OrbitalDistance => orbitalDistance;
     public float BaseOreContent => baseOreContent;
