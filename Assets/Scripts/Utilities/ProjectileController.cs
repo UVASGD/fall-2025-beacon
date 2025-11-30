@@ -33,7 +33,7 @@ public class ProjectileController : MonoBehaviour
         Vector3 directionToTarget = target.position - transform.position;
         float distanceToTarget = directionToTarget.magnitude;
         transform.rotation = Quaternion.LookRotation(directionToTarget);
-        transform.position += transform.forward * Mathf.Min(speed * Time.fixedDeltaTime, distanceToTarget);
+        transform.position += transform.forward * Mathf.Min(speed * Time.fixedDeltaTime * GlobalSettings.i.TimeScale, distanceToTarget);
         
         if(Vector3.Distance(transform.position, target.position) < 0.05f)
         {
@@ -45,7 +45,7 @@ public class ProjectileController : MonoBehaviour
         }
         else
         {
-            travelDistance += Mathf.Min(speed * Time.fixedDeltaTime, distanceToTarget);
+            travelDistance += Mathf.Min(speed * Time.fixedDeltaTime * GlobalSettings.i.TimeScale, distanceToTarget);
         }
     }
 }

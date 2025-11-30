@@ -23,7 +23,7 @@ public class TurretTargetingController : MonoBehaviour
         while (true)
         {
             UpdateTarget();
-            yield return new WaitForSeconds((1/cannonController.fireRate) * 0.9f);
+            yield return new WaitForSeconds((1/cannonController.fireRate) * 0.9f * GlobalSettings.i.TimeScale);
         }
     }
 
