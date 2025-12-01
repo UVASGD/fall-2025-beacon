@@ -43,11 +43,9 @@ public class PlayerMoney : MonoBehaviour
     {
         int earnedIncome = 0;
         int fromMining = GetMiningMoney();
-        int fromTrade = GetTradingMoney();
 
         earnedIncome += baseIncome;
         earnedIncome += fromMining;
-        earnedIncome += fromTrade;
         totalIncome += earnedIncome;
 
         List<int> incomeSources = new List<int>();
@@ -59,11 +57,6 @@ public class PlayerMoney : MonoBehaviour
         yield return earnedMoneyUI.EndTurnIncome(incomeSources, earnedIncome);
 
         defeatedEnemyIncome = 0;
-    }
-
-    private int GetTradingMoney()
-    {
-        return TradeHubController.GetTradeMoney();
     }
 
     private int GetMiningMoney()

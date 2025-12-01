@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1437897413922449128}
   - component: {fileID: 767642900915881470}
   - component: {fileID: 519523455411780220}
-  - component: {fileID: 1160671985969761054}
+  - component: {fileID: 5822286967436563217}
   m_Layer: 0
-  m_Name: Human_Trade_Hub
+  m_Name: Human_Missile_Silo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level_text: {fileID: 4249294644643733255}
   level: 1
---- !u!114 &1160671985969761054
+--- !u!114 &5822286967436563217
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 182521263910388553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18ae04320f436504e9633b3e56e54b84, type: 3}
+  m_Script: {fileID: 11500000, guid: 0dde6cbe810393844a3d0ab18352239f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2495068892940030786

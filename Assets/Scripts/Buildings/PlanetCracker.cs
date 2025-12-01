@@ -29,7 +29,7 @@ public class PlanetCracker : MonoBehaviour
         int crackingDamage = 20;
 
         var crackMod = .2f;
-        var associatedPlanetaryHealth = GetComponent<PlanetaryHealth>();
+        var associatedPlanetaryHealth = associatedPlanet.GetComponent<PlanetaryHealth>();
         if(associatedPlanetaryHealth.GetHealth() > crackingDamage * 2f)
         {
             associatedPlanetaryHealth.ChangeHealth(-crackingDamage);
