@@ -129,9 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a4cf256e43833e4383ecd368ae4e3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
-  rotationSpeed: 90
-  damage: 12
+  speed: 10
+  rotationSpeed: 10000
+  damage: 15
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256

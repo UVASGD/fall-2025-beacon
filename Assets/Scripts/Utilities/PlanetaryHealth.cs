@@ -42,7 +42,12 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
 
     void FixedUpdate()
     {
-        mInfoToDisplayController.infoText = $"Shield: {Mathf.RoundToInt(shield)}/{MaxShields()}\nHealth: {Mathf.RoundToInt(health)}/{maxHealth}";
+        string toDisplay = $"Health: {Mathf.RoundToInt(health)}/{maxHealth}";
+        if (MaxShields() > 0)
+            toDisplay += $"\nShield: {Mathf.RoundToInt(shield)}/{MaxShields()}";
+        if (MaxMines() > 0)
+            toDisplay += $"\nMines: {mines}/{MaxMines()}";
+        mInfoToDisplayController.infoText = toDisplay;
     }
 
     public static int GetAndResetKilledPlanets()
@@ -81,7 +86,7 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
 
     private int MaxShields()
     {
-        return 5 * shieldBuildings;
+        return 20 * shieldBuildings;
     }
 
     private int MaxMines()

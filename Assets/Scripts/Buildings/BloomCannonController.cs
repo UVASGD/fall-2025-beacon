@@ -106,7 +106,7 @@ public class BloomCannonController : MonoBehaviour
         for (int i = 0; i < levels.Length; i++)
         {
             // Activate only the sprite that matches the current level index.
-            bool shouldShow = i == currentLevel;
+            bool shouldShow = i == currentLevel-1;
             levels[i].sprite.SetActive(shouldShow);
         }
     }

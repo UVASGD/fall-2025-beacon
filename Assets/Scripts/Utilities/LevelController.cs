@@ -20,6 +20,7 @@ public class LevelController : MonoBehaviour
     {
         WaveManager.Singleton.onWaveFinished += OnWaveEnd;
         WaveManager.Singleton.onWaveStart += OnWaveStart;
+        level_text.gameObject.SetActive(false);
     }
 
     void OnWaveEnd()

@@ -16,6 +16,7 @@ MonoBehaviour:
   factionAdjective: Greenhouse
   factionID: 3
   factionIcon: {fileID: 21300000, guid: 71004c1518839374f8f89386daa50678, type: 3}
+  factionIconSize: {x: 100, y: 100}
   factionBuildings:
   - {fileID: 11400000, guid: 186257c09d46f5d4782c519344b25017, type: 2}
   - {fileID: 11400000, guid: 78aec482afc4cca469899ac6dd0c02d8, type: 2}
@@ -27,6 +28,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 186257c09d46f5d4782c519344b25017, type: 2}
   - {fileID: 11400000, guid: 186257c09d46f5d4782c519344b25017, type: 2}
   - {fileID: 11400000, guid: 4a3121c7d3341844f86e23516419eb72, type: 2}
+  uniqueBuildings:
+  - {fileID: 11400000, guid: 0648b64b36bdf654094994ff9bdce49d, type: 2}
+  - {fileID: 11400000, guid: bdaf64128a0a9c74bbc279a843bd29dd, type: 2}
   homePlanet: {fileID: 11400000, guid: 2a391851e322faa499b8ee0e0920add1, type: 2}
   factionOverview: Little is known of this faction. Their planet, which we call "Greenhouse-Mother",
     is overwhelmed by trillions of sentient plants that are connected by a communal
@@ -34,3 +38,4 @@ MonoBehaviour:
     more than makes up for it.
   leaderPortrait: {fileID: 0}
   hoverText: 
+  hasMoon: 0

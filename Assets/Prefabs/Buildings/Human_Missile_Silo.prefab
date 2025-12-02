@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missilePrefab: {fileID: 5486755377466375877, guid: ba58df1a6d15e514c9cefbe203823ce5, type: 3}
-  minMaxTimeBetweenSpawns: {x: 1, y: 3}
+  minMaxTimeBetweenSpawns: {x: 2, y: 4}
   launchPoint: {fileID: 8026527410208434303}
 --- !u!1 &2495068892940030786
 GameObject:

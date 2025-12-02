@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class ShopManager : MonoBehaviour
     public GameObject buttonTemplatePrefab;
     public PlayerBuildings playerBuildings;
     public PlayerMoney playerMoney;
+
 
     [SerializeField]
     private List<Building> buildingsInShop;
@@ -55,6 +57,7 @@ public class ShopManager : MonoBehaviour
             Debug.LogError("Player faction not found!");
         }
 
+        returnList.AddRange(GenerateRandomUniqeBuildings(2));
         return returnList;
     }
 
@@ -62,6 +65,31 @@ public class ShopManager : MonoBehaviour
     {
         shopObject.SetActive(false);
         WaveManager.Singleton.ShowStartNextWaveButton();
+    }
+
+    List<Building> GenerateRandomUniqeBuildings(int listLength)
+    {
+        Faction playerFaction = FactionManager.i.GetPlayerFaction();
+        List<Faction> allFactions = FactionManager.i.ReturnFactionList();
+
+        List<Building> possibleBuildings = new List<Building>();
+        foreach (Faction faction in allFactions)
+        {
+            if (faction != playerFaction)
+            {
+                possibleBuildings.AddRange(faction.FactionBase.UniqueBuildings);
+            }
+        }
+
+        List<Building> returnList = new List<Building>();
+        for (int i = 0; i < listLength; i++)
+        {
+            int randomIndex = Random.Range(0, possibleBuildings.Count);
+            returnList.Add(possibleBuildings[randomIndex]);
+            possibleBuildings.RemoveAt(randomIndex);
+        }
+
+        return returnList;
     }
 
     void GenerateShopButtons(List<Building> buildings)

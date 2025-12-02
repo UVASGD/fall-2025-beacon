@@ -12,6 +12,7 @@ public class FactionBase : ScriptableObject
     [SerializeField] Vector2 factionIconSize = new Vector2(100f, 100f);
     [SerializeField] List<Building> factionBuildings; //list of relevant faction buildings
     [SerializeField] List<Building> startingBuildings; //buildings that are available for free round 1 placement
+    [SerializeField] List<Building> uniqueBuildings;
     [SerializeField] Planet homePlanet; //starting planet of the faction
 
     [Header("Selection Screen Stuff")]
@@ -19,6 +20,7 @@ public class FactionBase : ScriptableObject
     [SerializeField] string factionOverview; //a short paragraph describing the faction's backstory and scenario
     [SerializeField] Sprite leaderPortrait; //if we have character leaders for each faction
     [SerializeField] string hoverText; //when hovering over the faction icon on the selection menu, text box with this data pops up about their gameplay style
+    [SerializeField] bool hasMoon;
 
     // Public getters
     public string FactionName => factionName;
@@ -28,8 +30,10 @@ public class FactionBase : ScriptableObject
     public Vector2 FactionIconSize => factionIconSize;
     public List<Building> FactionBuildings => factionBuildings;
     public List<Building> StartingBuildings => startingBuildings;
+    public List<Building> UniqueBuildings => uniqueBuildings;
     public Planet HomePlanet => homePlanet;
     public string FactionOverview => factionOverview;
     public Sprite LeaderPortrait => leaderPortrait;
     public string HoverText => hoverText;
+    public bool HasMoon => hasMoon;
 }
