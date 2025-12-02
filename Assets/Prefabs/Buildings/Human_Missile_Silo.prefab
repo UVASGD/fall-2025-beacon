@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1437897413922449128}
   - component: {fileID: 767642900915881470}
   - component: {fileID: 519523455411780220}
-  - component: {fileID: 5822286967436563217}
+  - component: {fileID: 7162658749289316390}
   m_Layer: 0
   m_Name: Human_Missile_Silo
   m_TagString: Untagged
@@ -35,6 +35,7 @@ Transform:
   m_Children:
   - {fileID: 8762729439217667753}
   - {fileID: 8534337343992015606}
+  - {fileID: 8026527410208434303}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1437897413922449128
@@ -86,7 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level_text: {fileID: 4249294644643733255}
   level: 1
---- !u!114 &5822286967436563217
+--- !u!114 &7162658749289316390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,9 +96,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 182521263910388553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dde6cbe810393844a3d0ab18352239f, type: 3}
+  m_Script: {fileID: 11500000, guid: 185a6602c25deaf4eb9740d3f1c2d4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  missilePrefab: {fileID: 5486755377466375877, guid: ba58df1a6d15e514c9cefbe203823ce5, type: 3}
+  minMaxTimeBetweenSpawns: {x: 1, y: 3}
+  launchPoint: {fileID: 8026527410208434303}
 --- !u!1 &2495068892940030786
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8762729439217667753
 RectTransform:
   m_ObjectHideFlags: 0
@@ -269,6 +273,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 6877627162677882520}
   m_maskType: 0
+--- !u!1 &4906474198629283502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8026527410208434303}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8026527410208434303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4906474198629283502}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4865471030982736084}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6999304154975956569
 GameObject:
   m_ObjectHideFlags: 0
