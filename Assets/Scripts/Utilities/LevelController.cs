@@ -25,7 +25,7 @@ public class LevelController : MonoBehaviour
 
     void OnWaveEnd()
     {
-        level_text.gameObject.SetActive(true);
+        //level_text.gameObject.SetActive(true);
     }
 
     void OnWaveStart()

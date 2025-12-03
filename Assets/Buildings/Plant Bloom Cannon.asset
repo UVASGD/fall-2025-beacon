@@ -15,6 +15,7 @@ MonoBehaviour:
   name: Bloom Cannon
   buildingPrefab: {fileID: 6397617054976648691, guid: 570d89c154e172746a1e114d62a02720, type: 3}
   moneyCost: 30
-  description: Empty building description
+  description: A turret that begins weak but surpasses a basic turret when fully
+    grown
   buildingSprite: {fileID: 21300000, guid: 142884eb6bfd9c444863cc642449be3e, type: 3}
   turretSprite: {fileID: 21300000, guid: 88fff88e512d2994680875d15a2237b0, type: 3}

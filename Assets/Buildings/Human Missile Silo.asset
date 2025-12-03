@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Missile Silo
   buildingPrefab: {fileID: 182521263910388553, guid: 1e0a757bdd5ccfb46bd78c6cec8dfe71, type: 3}
   moneyCost: 30
-  description: Empty building description
+  description: Fires a long-range, high-damage missile with a slow rate of fire
   buildingSprite: {fileID: 21300000, guid: 13f7cc1ec8f5f714caa6a3961976a3f9, type: 3}
   turretSprite: {fileID: 0}

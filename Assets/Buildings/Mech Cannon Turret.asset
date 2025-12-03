@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Cannon
   buildingPrefab: {fileID: 3611920911548372532, guid: fdf10d320d9207f4cba048693c36414e, type: 3}
   moneyCost: 30
-  description: Empty building description
+  description: A cost-effective turret with limited range
   buildingSprite: {fileID: 21300000, guid: 50ef575d6b3d8aa4490730c4ae8e7c4e, type: 3}
   turretSprite: {fileID: 21300000, guid: 405cc8c5b113bb444b537adfb9e38553, type: 3}

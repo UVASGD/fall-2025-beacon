@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Carrier Hanger
   buildingPrefab: {fileID: 5425186641954149106, guid: 773c045493747c4408fad1980e955318, type: 3}
   moneyCost: 30
-  description: Empty building description
+  description: A heavy ship that grants a non-stacking buff to nearby allied fighters
   buildingSprite: {fileID: 21300000, guid: 46d5f4551c5521346a12b599eced9e3e, type: 3}
   turretSprite: {fileID: 0}

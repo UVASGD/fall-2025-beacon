@@ -64,7 +64,7 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
 
     public void OnWaveStart()
     {
-        ChangeHealth(10f * healingBuildings);
+        ChangeHealth(15f * healingBuildings);
         SetShield(MaxShields());
         AddMines(5 * mineLayingBuidlings);
     }
@@ -86,7 +86,7 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
 
     private int MaxShields()
     {
-        return 20 * shieldBuildings;
+        return 60 * shieldBuildings;
     }
 
     private int MaxMines()
@@ -141,7 +141,7 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
         if (mines > 0)
         {
             mines--;
-            returnDamage += 10f; //Damage of mines
+            returnDamage += 30f; //Damage of mines
         }
 
         return returnDamage;

@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Figher Hanger
   buildingPrefab: {fileID: 1787033128487334723, guid: 071110fb989bc6249a9763788b341e80, type: 3}
   moneyCost: 30
-  description: Empty building description
+  description: A durable swarm that can be repositioned by shifting its beacon
   buildingSprite: {fileID: 21300000, guid: df4f067dfb1cd1b4396827fa58407eee, type: 3}
   turretSprite: {fileID: 0}

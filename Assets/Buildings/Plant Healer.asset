@@ -15,6 +15,6 @@ MonoBehaviour:
   name: Healer
   buildingPrefab: {fileID: 1324668049862070682, guid: a67aca83e784e6d4d90f8c067c46c212, type: 3}
   moneyCost: 30
-  description: Empty building description
+  description: Heals its planet each round
   buildingSprite: {fileID: 21300000, guid: 53c6a8800aaff6440be9ae1529b262e6, type: 3}
   turretSprite: {fileID: 0}

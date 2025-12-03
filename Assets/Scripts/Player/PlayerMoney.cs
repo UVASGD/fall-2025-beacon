@@ -31,7 +31,7 @@ public class PlayerMoney : MonoBehaviour
     }
     void UpdateText()
     {
-        moneyText.text = $"Money: ${money}";
+        moneyText.text = $"{money}";
     }
 
     void OnWaveEnd()
