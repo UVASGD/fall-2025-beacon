@@ -53,10 +53,10 @@ public class OrbitHandler : MonoBehaviour
     }
 
     //Randomly places target away from others
-    public static void PlaceOnGrid(Transform target, List<Transform> others, int gridSize, float cellSize, float minDistance, float maxDistance, bool gridSizeIsEven)
+    public static bool PlaceOnGrid(Transform target, List<Transform> others, int gridSize, float cellSize, float minDistance, float maxDistance, bool gridSizeIsEven)
     {
-        if (target == null) return;
-        if (gridSize <= 0) return;
+        if (target == null) return false;
+        if (gridSize <= 0) return false;
 
         // Centered grid � calculate extents
         int half = gridSize / 2;
@@ -97,11 +97,12 @@ public class OrbitHandler : MonoBehaviour
             if (!tooClose && !tooFar)
             {
                 target.position = newPos;
-                return;
+                return true;
             }
         }
 
         Debug.LogWarning($"[GridPlacer] Could not find a valid position for {target.name} after {maxAttempts} attempts.");
+        return false;
     }
 
     public void OnTurnEnd()
@@ -122,7 +123,7 @@ public class OrbitHandler : MonoBehaviour
         planetHealth.TopOffHealth();
         planetHealth.SetRenderer(orbitingBody.GetComponentInChildren<SpriteRenderer>()); //configuring the hitflash (make sure orbiting bodies have their mesh as the earliest child possible)
         orbit.orbitingPlanet = orbitingBody;    
-        PlaceOnGrid(orbitingBody.transform, orbitTransforms, 25, 4, 15f, 30f, orbit.BuildingSize % 2 == 0);
+        bool result = PlaceOnGrid(orbitingBody.transform, orbitTransforms, 50, 4, 10f, 30f, orbit.BuildingSize % 2 == 0);
 
         return;
         /* commenting out this unreachable code
