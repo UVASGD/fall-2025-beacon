@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlanetaryHealth : MonoBehaviour, IHealth
 {
     public static List<PlanetaryHealth> planetaryHealths = new List<PlanetaryHealth>();
+    private static int killedPlanets;
 
     [SerializeField] private float health = 100;
     [SerializeField] private float maxHealth = 100;
@@ -146,9 +147,6 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
             returnDamage += 30f; //Damage of mines
         }
 
-        return returnDamage;
-    }
-
         if(change < 0 && planetRenderer != null) //null check prevents exception if not assigned
         {
             //perform a damage hitflash
@@ -159,7 +157,10 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
         {
             worldBar.UpdateFill(health / maxHealth);
         }
+
+        return returnDamage;
     }
+
     public void setWorldspaceBar(WorldSpaceHealthbar bar)
     {
         worldBar = bar;
