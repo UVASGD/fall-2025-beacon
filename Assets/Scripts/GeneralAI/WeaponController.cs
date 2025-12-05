@@ -56,7 +56,7 @@ public class WeaponController : MonoBehaviour
         foreach(Transform firePoint in firePoints)
         {
             GameObject newProjectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-            newProjectile.GetComponent<ProjectileController>().Initialize(target, speed, GetDamage());
+            newProjectile.GetComponent<ProjectileController>().Initialize(target, speed, GetDamage(), GetComponent<IHealth>());
         }
 
         cooldown = 1 / fireRate;

@@ -29,18 +29,12 @@ public class BuildingButtonGenerator : MonoBehaviour
             GameObject buttonGO = Instantiate(buttonTemplatePrefab, buttonTemplatePrefab.transform.position, buttonTemplatePrefab.transform.rotation);
             buttonGO.transform.SetParent(buttonTemplatePrefab.transform.parent, false);
             buttonGO.SetActive(true);
-            previousButtons.Add(buttonGO);            
-            TMP_Text label = buttonGO.GetComponentInChildren<TMP_Text>();
+            previousButtons.Add(buttonGO);
+            buttonGO.GetComponent<BuildingButtonController>().DisplayBuilding(building);
+            buttonGO.AddComponent<InfoToDisplayController>();
+            buttonGO.GetComponent<InfoToDisplayController>().infoText = building.description;
             int indexToSelect = currentIndex;
             buttonGO.GetComponent<Button>().onClick.AddListener(() => playerPlacing.SetSelectedIndex(indexToSelect));
-            if (label != null)
-            {
-                label.text = building.name;
-            }
-            else
-            {
-                Debug.LogWarning("No TMP_Text found on button prefab.");
-            }
             currentIndex++;
         }
     }

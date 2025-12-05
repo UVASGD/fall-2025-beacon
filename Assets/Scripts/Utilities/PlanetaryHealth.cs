@@ -8,6 +8,7 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
 
     [SerializeField] private float health = 100;
     [SerializeField] private float maxHealth = 100;
+    private float shield = 0;
     public Bar bar;
 
     [Header("Planetary Hit Flash")]
@@ -15,6 +16,13 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
     private bool useWorldspaceBar = false;
     private WorldSpaceHealthbar worldBar;
     
+    private int healingBuildings = 0;
+    private int shieldBuildings = 0;
+    private int mineLayingBuidlings = 0;
+
+    private int mines = 0;
+
+    private InfoToDisplayController mInfoToDisplayController;
 
     void Awake()
     {
@@ -28,6 +36,75 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
             bar.SetMaxValue(maxHealth);
             bar.SetValue(health);
         }
+        mInfoToDisplayController = GetComponentInChildren<InfoToDisplayController>();
+
+        WaveManager.Singleton.onWaveFinished += OnWaveFinished;
+        WaveManager.Singleton.onWaveStart += OnWaveStart;   
+    }
+
+    void FixedUpdate()
+    {
+        string toDisplay = $"Health: {Mathf.RoundToInt(health)}/{maxHealth}";
+        if (MaxShields() > 0)
+            toDisplay += $"\nShield: {Mathf.RoundToInt(shield)}/{MaxShields()}";
+        if (MaxMines() > 0)
+            toDisplay += $"\nMines: {mines}/{MaxMines()}";
+        mInfoToDisplayController.infoText = toDisplay;
+    }
+
+    public static int GetAndResetKilledPlanets()
+    {
+        int toReturn = killedPlanets;
+        killedPlanets = 0;
+        return toReturn;
+    }
+
+    public void OnWaveFinished()
+    {
+
+    }
+
+    public void OnWaveStart()
+    {
+        ChangeHealth(15f * healingBuildings);
+        SetShield(MaxShields());
+        AddMines(5 * mineLayingBuidlings);
+    }
+
+    public void AddHealingBuilding()
+    {
+        healingBuildings++; 
+    }
+
+    public void AddShieldBuilding()
+    {
+        shieldBuildings++;
+    }
+
+    public void AddMineLayingBuilding()
+    {
+        mineLayingBuidlings++;
+    }
+
+    private int MaxShields()
+    {
+        return 60 * shieldBuildings;
+    }
+
+    private int MaxMines()
+    {
+        return mineLayingBuidlings * 10;
+    }
+
+    public void AddMines(int toAdd)
+    {
+        mines += toAdd;
+        mines = Mathf.Clamp(mines, 0, MaxMines());
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
     }
 
     public float GetHealth()
@@ -35,8 +112,23 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
         return health;
     }
 
-    public void ChangeHealth(float change)
+    public void SetShield(float setTo)
     {
+        shield = setTo; 
+    }
+
+    public float ChangeHealth(float change)
+    {
+        //Reduce negative change by shield amount
+        if (change < 0)
+        {
+            if (planetRenderer != null)
+                StartCoroutine(ColorFlash(GlobalSettings.i.HitFlashColor));
+            float reducedDamage = Mathf.Min(-change, shield);
+            shield -= reducedDamage;
+            change += reducedDamage;
+        }
+
         health += change;
         health = Mathf.Clamp(health, 0, maxHealth);
         if (bar != null)
@@ -46,6 +138,16 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
         {
             Destroy(gameObject);
         }
+
+        float returnDamage = 0f;
+        if (mines > 0)
+        {
+            mines--;
+            returnDamage += 30f; //Damage of mines
+        }
+
+        return returnDamage;
+    }
 
         if(change < 0 && planetRenderer != null) //null check prevents exception if not assigned
         {
@@ -95,6 +197,13 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
     {
         planetaryHealths.Remove(this);
         OrbitHandler.Instance.RemoveOrbitalData(this.gameObject);
+        WaveManager.Singleton.onWaveFinished -= OnWaveFinished;
+        WaveManager.Singleton.onWaveStart -= OnWaveStart;
+
+        if(GetComponent<HomePlanetController>() != null)
+        {
+            killedPlanets++;
+        }
     }
 
     private IEnumerator ColorFlash(Color flashColor)

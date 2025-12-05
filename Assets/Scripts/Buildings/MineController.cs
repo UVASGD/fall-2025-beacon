@@ -6,7 +6,7 @@ public class MineController : MonoBehaviour
 {
     public static List<MineController> mineControllers = new List<MineController>();
 
-    OrbitalData associatedOrbitalData;
+    bool onMainPlanet = false;
 
     void Awake()
     {
@@ -19,14 +19,15 @@ public class MineController : MonoBehaviour
         Collider[] hits = Physics.OverlapBox(transform.position, Vector3.one * 0.5f, Quaternion.identity, LayerMask.GetMask("BuildableArea"));
         //Debug.Log($"Name of hit collider: {hits[0].transform.name}");
         GameObject hitObject = hits[0].transform.parent.gameObject;
-        OrbitalData orbitalData = OrbitHandler.Instance.GetOrbitalDataOfPlanet(hitObject);
-        if (orbitalData != null)
-            associatedOrbitalData = orbitalData;
+        onMainPlanet = hitObject.GetComponent<HomePlanetController>() != null;
     }
 
     public int GetMiningMoney()
     {
-        return Mathf.RoundToInt(associatedOrbitalData.BaseOreContent * 0.2f);
+        if(!onMainPlanet)
+            return Mathf.RoundToInt(SpawnedAsteroid.DEFAULTORECONTENT * 0.2f);
+        else
+            return Mathf.RoundToInt(SpawnedAsteroid.DEFAULTORECONTENT * 0.2f * 0.25f);
     }
 
     private void OnDestroy()

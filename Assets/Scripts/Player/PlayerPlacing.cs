@@ -47,7 +47,7 @@ public class PlayerPlacing : MonoBehaviour
     private void UpdateReferencePlanet(Transform reference)
     {
         planetReference = reference;
-        Debug.Log($"origin reference set to {reference.gameObject.name}");
+        //Debug.Log($"origin reference set to {reference.gameObject.name}");
     }
     public void OnWaveStart()
     {
@@ -98,7 +98,7 @@ public class PlayerPlacing : MonoBehaviour
         placingIcon.transform.position = placePosition;
         if (Input.GetMouseButtonDown(0))
         {
-            LevelController possibleLevelController = ValidLevelController(placePosition);
+            LevelController possibleLevelController = null; //ValidLevelController(placePosition);
             if (possibleLevelController != null)
             {
                 possibleLevelController.LevelUp();

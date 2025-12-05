@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 2277471435441436865}
   - component: {fileID: 1154872866795385942}
   - component: {fileID: 3201997436874944776}
+  - component: {fileID: 7900862536500451263}
   m_Layer: 11
   m_Name: Building BorderUI
   m_TagString: Untagged
@@ -313,3 +314,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30964d8ca601fd64b98d70985b38f186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7900862536500451263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8144471780043358591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a967d03930e5afd499c153b750035f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoText: Default info text

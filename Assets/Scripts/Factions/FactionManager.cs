@@ -75,4 +75,9 @@ public class FactionManager : MonoBehaviour
     {
         return playerFaction;
     }
+
+    public int GetPlayerFactionID()
+    {
+        return playerFactionID;
+    }
 }

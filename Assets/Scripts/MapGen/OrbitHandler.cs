@@ -18,13 +18,20 @@ public class OrbitHandler : MonoBehaviour
 
         instantiatedOrbits = new List<GameObject>(); //references to the instantiated orbits
 
-        foreach (var orbit in orbits)
+        if (FactionManager.i.GetPlayerFaction().FactionBase.HasMoon) //Spawn moon if faction has moon, otherwise clear orbit list
         {
-            var orbitingBody = Instantiate(orbit.associatedPlanet);
-            orbit.RandomizePhasePercent();
-            instantiatedOrbits.Add(orbitingBody);
+            foreach (var orbit in orbits)
+            {
+                var orbitingBody = Instantiate(orbit.associatedPlanet);
+                orbit.RandomizePhasePercent();
+                instantiatedOrbits.Add(orbitingBody);
 
-            placePlanetaryOrbit(orbitingBody, orbit);
+                placePlanetaryOrbit(orbitingBody, orbit);
+            }
+        }
+        else
+        {
+            orbits = new List<OrbitalData>();   
         }
     }
     void Start()
@@ -47,10 +54,10 @@ public class OrbitHandler : MonoBehaviour
     }
 
     //Randomly places target away from others
-    public static void PlaceOnGrid(Transform target, List<Transform> others, int gridSize, float cellSize, float minDistance, bool gridSizeIsEven)
+    public static bool PlaceOnGrid(Transform target, List<Transform> others, int gridSize, float cellSize, float minDistance, float maxDistance, bool gridSizeIsEven)
     {
-        if (target == null) return;
-        if (gridSize <= 0) return;
+        if (target == null) return false;
+        if (gridSize <= 0) return false;
 
         // Centered grid � calculate extents
         int half = gridSize / 2;
@@ -72,6 +79,7 @@ public class OrbitHandler : MonoBehaviour
 
             // Check distance from all others
             bool tooClose = false;
+            bool tooFar = false;
             foreach (Transform t in others)
             {
                 if (t == null || t == target) continue;
@@ -80,16 +88,22 @@ public class OrbitHandler : MonoBehaviour
                     tooClose = true;
                     break;
                 }
+                else if (Vector3.Distance(newPos, t.position) > maxDistance)
+                {
+                    tooFar = true;
+                    break;
+                }
             }
 
-            if (!tooClose)
+            if (!tooClose && !tooFar)
             {
                 target.position = newPos;
-                return;
+                return true;
             }
         }
 
         Debug.LogWarning($"[GridPlacer] Could not find a valid position for {target.name} after {maxAttempts} attempts.");
+        return false;
     }
 
     public void OnTurnEnd()
@@ -117,7 +131,7 @@ public class OrbitHandler : MonoBehaviour
 
         planetHealth.SetRenderer(orbitingBody.GetComponentInChildren<SpriteRenderer>()); //configuring the hitflash (make sure orbiting bodies have their mesh as the earliest child possible)
         orbit.orbitingPlanet = orbitingBody;    
-        PlaceOnGrid(orbitingBody.transform, orbitTransforms, 25, 4, orbit.OrbitalDistance / 2f, orbit.BuildingSize % 2 == 0);
+        bool result = PlaceOnGrid(orbitingBody.transform, orbitTransforms, 50, 4, 10f, 30f, orbit.BuildingSize % 2 == 0);
 
         return;
         /* commenting out this unreachable code

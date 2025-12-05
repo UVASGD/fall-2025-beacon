@@ -55,6 +55,11 @@ public class WaveManager : MonoBehaviour
 
     public void StartNewWave()
     {
+        if(PlayerBuildings.Instance.GetBuildings().Length != 0)
+        {
+            return;
+        }
+
         SpawnNewPortals();
         startNextWaveButton.SetActive(false);
         if (onWaveStart != null)
@@ -62,7 +67,7 @@ public class WaveManager : MonoBehaviour
             waveState = WaveState.Active;
             onWaveStart();
         }
-        int enemiesToAssign = waveCount * portals.Count;
+        int enemiesToAssign = (waveCount-1) + portals.Count;
         int[] portalsToSpawnCarrier = ReturnRandomIntegerArrayMinMax(waveCount / 3, 0, portals.Count);
         int[] toSpawnCounts = ReturnRandomIntegerArray(portals.Count, 1, enemiesToAssign);
         for(int i = 0; i < toSpawnCounts.Length; i++)
@@ -167,6 +172,17 @@ public class WaveManager : MonoBehaviour
             returnSum += i;
         }
         return returnSum;
+    }
+
+    public int GetFinishedWaveCount()
+    {
+        return waveCount - 2;
+    }
+
+    private void OnDestroy()
+    {
+        onWaveFinished = null;
+        onWaveStart = null;
     }
 }
 

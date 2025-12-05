@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
   m_Name: Martian Carrier Hanger
   m_EditorClassIdentifier: 
+  name: Carrier Hanger
   buildingPrefab: {fileID: 4251255176715899669, guid: d4a63d7289c223b4f93411f5618ed123, type: 3}
   moneyCost: 30
+  description: A heavy ship that grants a non-stacking buff to nearby allied fighters
+  buildingSprite: {fileID: 21300000, guid: 886509e250d9bb348b11c687792d4e32, type: 3}
+  turretSprite: {fileID: 0}

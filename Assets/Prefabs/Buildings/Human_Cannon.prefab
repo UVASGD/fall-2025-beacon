@@ -494,7 +494,6 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
-  cannonController: {fileID: 4711377321362814148}
   target: {fileID: 0}
 --- !u!114 &4711377321362814148
 MonoBehaviour:
@@ -544,4 +543,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bdb63d65046e4e46a7fd0e0d0b2d378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 7
+  damage: 10

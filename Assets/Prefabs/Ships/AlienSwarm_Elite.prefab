@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6366589568923986767}
+  - {fileID: 6257909743518186122}
   m_Father: {fileID: 6356850052338974221}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4172267647453604141
@@ -159,10 +159,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5a919e38b0c314aaf09eac6b6473c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
-  maxHealth: 200
+  health: 120
+  maxHealth: 120
   defeatBonus: 0
---- !u!1 &5291665167486315694
+--- !u!1 &5981901657940939254
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,37 +170,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6366589568923986767}
-  - component: {fileID: 78844163406705096}
+  - component: {fileID: 6257909743518186122}
+  - component: {fileID: 5641501938877116481}
   m_Layer: 0
-  m_Name: Biomech Carrier
+  m_Name: No_Planet_Carrier_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6366589568923986767
+--- !u!4 &6257909743518186122
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5291665167486315694}
+  m_GameObject: {fileID: 5981901657940939254}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5000005, y: -0.49999985, z: 0.49999958, w: 0.5000002}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8997433521860848687}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
---- !u!212 &78844163406705096
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+--- !u!212 &5641501938877116481
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5291665167486315694}
+  m_GameObject: {fileID: 5981901657940939254}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -235,7 +235,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6707f1be45bf665468abf43f52481e34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff170642d3ddcc94497f1fc695d75058, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

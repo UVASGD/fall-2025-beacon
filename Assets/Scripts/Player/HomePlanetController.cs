@@ -19,10 +19,12 @@ public class HomePlanetController : MonoBehaviour
     {
         InitializeModularPlanet();
     }
+
     public void SetHomePlanet(Planet planet)
     {
         planetType = planet;
     }
+
     private void InitializeModularPlanet()
     {
         planetaryGraphics.sprite = planetType.BasePlanetSprites[0]; //defaulting to zero as the undamaged state.

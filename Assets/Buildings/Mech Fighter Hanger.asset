@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1eacb161382ef45bfedc75e00720a8, type: 3}
+  m_Name: Mech Fighter Hanger
+  m_EditorClassIdentifier: 
+  name: Figher Hanger
+  buildingPrefab: {fileID: 1822687173199700000, guid: 670de3b00dc41d14c85606ff54ab0ac4, type: 3}
+  moneyCost: 30
+  description: A durable swarm that can be repositioned by shifting its beacon
+  buildingSprite: {fileID: 21300000, guid: fde69dd92328f7041a064b28e3862c64, type: 3}
+  turretSprite: {fileID: 0}

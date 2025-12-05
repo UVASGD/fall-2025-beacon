@@ -6,10 +6,15 @@ public class TurretTargetingController : MonoBehaviour
     public float rangeRadius = 20f;
     public LayerMask enemyLayers;
 
-    public CannonController cannonController;
+    public ITurret iTurret;
 
     [SerializeField]
     private Transform target;
+
+    private void Awake()
+    {
+        iTurret = GetComponent<ITurret>();
+    }
 
     private void Start()
     {
@@ -23,7 +28,7 @@ public class TurretTargetingController : MonoBehaviour
         while (true)
         {
             UpdateTarget();
-            yield return new WaitForSeconds((1/cannonController.fireRate) * 0.9f * GlobalSettings.i.TimeScale);
+            yield return new WaitForSeconds((1/ iTurret.GetFireRate()) * 0.9f * GlobalSettings.i.TimeScale);
         }
     }
 

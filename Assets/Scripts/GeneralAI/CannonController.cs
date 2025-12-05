@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class CannonController : MonoBehaviour
+public class CannonController : MonoBehaviour, ITurret
 {
     public TurretTargetingController targetingController;
     public float range = 20f;
@@ -41,6 +41,11 @@ public class CannonController : MonoBehaviour
 
         target = targetingController.GetTarget();
         HandleShootingTarget();
+    }
+
+    public float GetFireRate()
+    {
+        return fireRate;
     }
 
     private void HandleShootingTarget()

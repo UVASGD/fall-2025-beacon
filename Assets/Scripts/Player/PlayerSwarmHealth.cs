@@ -10,6 +10,7 @@ public class PlayerSwarmHealth : MonoBehaviour, IHealth
     private float maxHealth = 100;
 
     private CarrierBuffController carrierBuffController;
+    bool died = false;
 
     void Awake()
     {
@@ -26,7 +27,7 @@ public class PlayerSwarmHealth : MonoBehaviour, IHealth
         return maxHealth;
     }
 
-    public void ChangeHealth(float change)
+    public float ChangeHealth(float change)
     {
         if(carrierBuffController != null && carrierBuffController.CarrierInRange())
         {
@@ -39,10 +40,13 @@ public class PlayerSwarmHealth : MonoBehaviour, IHealth
         health += change;
         health = Mathf.Clamp(health, 0, maxHealth);
 
-        if(health == 0)
+        if(health == 0 && !died)
         {
+            died = true;
             Destroy(gameObject);
         }
+
+        return 0f;
     }
 
     public void InitializeHealth(float _maxHealth)

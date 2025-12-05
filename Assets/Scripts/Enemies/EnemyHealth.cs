@@ -10,21 +10,28 @@ public class EnemyHealth : MonoBehaviour, IHealth
     [SerializeField] private float health = 100;
     [SerializeField] private float maxHealth = 100;
     [SerializeField] int defeatBonus; //income gained from defeating this enemy
+
+    private bool died =false;
+
     public float GetHealth()
     {
         return health;
     }
 
-    public void ChangeHealth(float change)
+    public float ChangeHealth(float change)
     {
         health += change;
         health = Mathf.Clamp(health, 0, maxHealth);
 
-        if (health == 0)
+        if (health == 0 && !died)
         {
             //invoke event to track kill for defeated enemy income bonus
+            died = true;
             OnEnemyKilled?.Invoke(defeatBonus);
-            Destroy(gameObject);
+            if(gameObject != null)
+                Destroy(gameObject);
         }
+
+        return 0f;
     }
 }

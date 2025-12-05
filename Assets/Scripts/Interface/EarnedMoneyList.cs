@@ -30,8 +30,8 @@ public class EarnedMoneyList : MonoBehaviour
 
         yield return LerpOnscreen();
 
-        yield return new WaitForSeconds(incomeDisplayDelay);
         yield return DisplayEarnedIncome();
+        yield return new WaitForSeconds(incomeDisplayDelay);
 
         yield return LerpOffScreen();
 

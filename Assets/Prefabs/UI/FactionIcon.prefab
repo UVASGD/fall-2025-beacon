@@ -438,9 +438,10 @@ MonoBehaviour:
   factionImage: {fileID: 1702658012300193622}
   overviewText: {fileID: 5698600790868657503}
   factionId: -1
-  backgroundImage: {fileID: 5700682598089253922}
-  highlightedColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
-  unhighlightedColor: {r: 0.35686275, g: 0.35686275, b: 0.35686275, a: 1}
+  backgroundImage: {fileID: 6434847707387000278}
+  highlightedColor: {r: 0.61006284, g: 0.61006284, b: 0.61006284, a: 1}
+  unhighlightedColor: {r: 0.5176471, g: 0.5176471, b: 0.5176471, a: 1}
+  selectedColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
 --- !u!1 &8500297845854208436
 GameObject:
   m_ObjectHideFlags: 0

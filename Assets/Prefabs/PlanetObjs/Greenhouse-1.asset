@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basePlanetSprites:
   - {fileID: 21300000, guid: 71004c1518839374f8f89386daa50678, type: 3}
-  maxPlanetHealth: 1500
+  maxPlanetHealth: 1000
   bodyData:
     bodyName: Greenhouse-Mother
     population: 72000000000000

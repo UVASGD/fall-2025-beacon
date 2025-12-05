@@ -20,6 +20,7 @@ public class HangerController : MonoBehaviour
     private void Awake()
     {
         WaveManager.Singleton.onWaveStart += OnWaveStart;
+        WaveManager.Singleton.onWaveFinished += OnWaveEnd;
         levelController = GetComponent<LevelController>();  
         levelController.onLevelUp += OnLevelUp;
 
@@ -37,6 +38,15 @@ public class HangerController : MonoBehaviour
         InitializeSwarmStats(swarm);
         connectedSwarm = swarm;
         connectedBeacon = beacon;
+    }
+
+    void OnWaveEnd()
+    {
+        Destroy(connectedSwarm);
+        GameObject swarm = Instantiate(swarmPrefab, connectedBeacon.transform.position, transform.rotation);
+        swarm.GetComponent<HumanController>().connectedBeacon = connectedBeacon.transform;
+        InitializeSwarmStats(swarm);
+        connectedSwarm = swarm;
     }
 
     void OnWaveStart()
@@ -63,5 +73,14 @@ public class HangerController : MonoBehaviour
         damageController.damage *= 1f + (1f / (currentLevel - 1));
         swarmFireRate *= 1f + (1f / (currentLevel - 1));
         swarmSpeed *= 1f + (1f / (currentLevel - 1));
+    }
+
+    private void OnDestroy()
+    {
+        if(WaveManager.Singleton != null)
+        {
+            WaveManager.Singleton.onWaveStart -= OnWaveStart;
+            WaveManager.Singleton.onWaveFinished -= OnWaveEnd;
+        }
     }
 }

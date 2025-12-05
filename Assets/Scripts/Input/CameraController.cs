@@ -50,7 +50,7 @@ public class CameraController : MonoBehaviour
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (Mathf.Abs(scroll) > 0.01f)
         {
-            float newHeight = Mathf.Clamp(cam.orthographicSize - scroll * zoomSpeed * Time.deltaTime, minZoom, maxZoom);
+            float newHeight = Mathf.Clamp(cam.orthographicSize - scroll * zoomSpeed * Time.unscaledDeltaTime, minZoom, maxZoom);
             cam.orthographicSize = newHeight;
         }
     }
