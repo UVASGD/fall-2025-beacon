@@ -20,6 +20,7 @@ public class PlayerGenHandler : MonoBehaviour
         Faction player = FactionManager.i.GetPlayerFaction(); //reference assigned here to reduce function calls in this method
 
         homePlanet.SetHomePlanet(player.FactionBase.HomePlanet); //set the central planet to the player faction
+        OrbitHandler.Instance.SetSpawnChance(player.CapChance);
         // ShopManager now gets buildings directly from FactionManager
         playerBuildings.SetInitialBuildings(player.FactionBase.StartingBuildings); //sets the free initial buildings before wave 1
     }

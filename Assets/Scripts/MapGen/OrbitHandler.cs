@@ -38,6 +38,10 @@ public class OrbitHandler : MonoBehaviour
     {
         WaveManager.Singleton.onWaveFinished += OnTurnEnd;
     }
+    public void SetSpawnChance(CaptureChance capChance)
+    {
+        bodyCaptureChance = capChance;
+    }
     public void Update()
     {
         //only if the wavestate is active

@@ -32,9 +32,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1207c3e6e74da5b4cafdb43b465d6b9a, type: 2}
   - {fileID: 11400000, guid: 25c11faa10d90c54aad92f309dc448f0, type: 2}
   homePlanet: {fileID: 11400000, guid: 662fa6d80cea1ec45b1676589b2234cd, type: 2}
-  factionOverview: From the Sol system, Humanity is the newest interplanetary power
+  capChance: {fileID: 11400000, guid: b0616daac3748814cba7076c90f73b80, type: 2}
+  factionOverview: 'From the Sol system, Humanity is the newest interplanetary power
     in the galactic system. Their space program emphasizes technological progress
     and metallic ships.
+
+    Earth is known for attracting a moderate amount of asteroids.'
   leaderPortrait: {fileID: 0}
   hoverText: Filler Text
   hasMoon: 1
