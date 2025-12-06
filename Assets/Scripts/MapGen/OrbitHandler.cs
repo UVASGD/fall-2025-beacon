@@ -53,16 +53,22 @@ public class OrbitHandler : MonoBehaviour
         }
     }
 
+    private static int gridSize = 20;
+    private const int placeCheckRadius = 15;
     //Randomly places target away from others
-    public static bool PlaceOnGrid(Transform target, List<Transform> others, int gridSize, float cellSize, float minDistance, float maxDistance, bool gridSizeIsEven)
+    public static bool PlaceOnGrid(Transform target, List<Transform> others, float cellSize, float buildingAreaSize)
     {
         if (target == null) return false;
         if (gridSize <= 0) return false;
 
+        //Move target super low so it doesn't interfere with "BuildableArea" check
+        target.position = Vector3.up * -100000f;
+
+        bool gridSizeIsEven = buildingAreaSize % 2 == 0;
         // Centered grid � calculate extents
         int half = gridSize / 2;
 
-        const int maxAttempts = 1000;
+        const int maxAttempts = 200;
         int attempts = 0;
 
         while (attempts < maxAttempts)
@@ -70,39 +76,27 @@ public class OrbitHandler : MonoBehaviour
             attempts++;
 
             // Pick a random grid coordinate (aligned to grid)
-            int xCell = Random.Range(-half, half + 1);
-            int zCell = Random.Range(-half, half + 1);
+            int xCell = Random.Range(half-placeCheckRadius, half + 1) * (2*Random.Range(0, 2)-1);
+            int zCell = Random.Range(half-placeCheckRadius, half + 1) * (2*Random.Range(0, 2)-1);
 
             Vector3 newPos = new Vector3(xCell * cellSize, 0f, zCell * cellSize);
             if(gridSizeIsEven)
                 newPos -= (Vector3.right * cellSize / 2f + Vector3.forward * cellSize / 2f);
 
-            // Check distance from all others
-            bool tooClose = false;
-            bool tooFar = false;
-            foreach (Transform t in others)
-            {
-                if (t == null || t == target) continue;
-                if (Vector3.Distance(newPos, t.position) < minDistance)
-                {
-                    tooClose = true;
-                    break;
-                }
-                else if (Vector3.Distance(newPos, t.position) > maxDistance)
-                {
-                    tooFar = true;
-                    break;
-                }
-            }
-
-            if (!tooClose && !tooFar)
+            bool touchesOtherBuildingArea = Physics.CheckBox(newPos, Vector3.one * buildingAreaSize * cellSize, Quaternion.identity, LayerMask.GetMask("BuildableArea"));//Possible Bug: Possibly doesn't work in edge cases where building areas are really large
+            if (!touchesOtherBuildingArea)
             {
                 target.position = newPos;
                 return true;
             }
+            if (attempts == maxAttempts){
+                attempts = 0;
+                gridSize += 5;
+                Debug.Log($"Increased grid size of asteriod spawn area to {gridSize}");
+            }
         }
 
-        Debug.LogWarning($"[GridPlacer] Could not find a valid position for {target.name} after {maxAttempts} attempts.");
+        Debug.LogWarning($"[GridPlacer] Could not find a valid position for {target.name} after {maxAttempts} attempts.");//This is unreachable
         return false;
     }
 
@@ -132,7 +126,7 @@ public class OrbitHandler : MonoBehaviour
 
         planetHealth.SetRenderer(orbitingBody.GetComponentInChildren<SpriteRenderer>()); //configuring the hitflash (make sure orbiting bodies have their mesh as the earliest child possible)
         orbit.orbitingPlanet = orbitingBody;    
-        bool result = PlaceOnGrid(orbitingBody.transform, orbitTransforms, 50, 4, 10f, 30f, orbit.BuildingSize % 2 == 0);
+        bool result = PlaceOnGrid(orbitingBody.transform, orbitTransforms, 4, orbit.BuildingSize);
 
         return;
     }
