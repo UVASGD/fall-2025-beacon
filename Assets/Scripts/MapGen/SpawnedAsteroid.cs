@@ -19,13 +19,8 @@ public class SpawnedAsteroid : MonoBehaviour
         int spriteIndex = 0;
         switch (asteroidScale) //assign the sprite of the captured body based on its scale
         {
-            case < 0.75f:
-                spriteIndex = 0;
-                orbitalData.SetBaseOreContent(DEFAULTORECONTENT);
-                orbitalData.SetPlanetMaxHealth(100);
-                break;
             case < 1.25f:
-                spriteIndex = 1;
+                spriteIndex = Random.Range(0, 2);
                 orbitalData.SetBaseOreContent(DEFAULTORECONTENT);
                 orbitalData.SetPlanetMaxHealth(150);
                 break;
