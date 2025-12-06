@@ -9,6 +9,10 @@ public class TimeScaleEditor : MonoBehaviour, IPointerClickHandler
     [SerializeField] float targetTimescale;
     [SerializeField] int buttonIndex;
     public static event Action<int> onTimescaleChange;
+    void Awake()
+    {
+        
+    }
     public void OnPointerClick(PointerEventData eventData)
     {
         onTimescaleChange.Invoke(buttonIndex);

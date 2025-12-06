@@ -18,13 +18,16 @@ public class GlobalSettings : MonoBehaviour
     [SerializeField] private Color hitFlashColor;
     public Color HitFlashColor => hitFlashColor;
 
+    [SerializeField] private Color shieldHitColor;
+    public Color ShieldHitColor => shieldHitColor;
+
     [SerializeField] float timeScale;
     public float TimeScale => timeScale;
 
     public void AdjustTimeScale(float newTimeScale)
     {
         timeScale = newTimeScale;
-    
+
         Debug.Log("Timescale adjusted to " + newTimeScale);
     }
 }

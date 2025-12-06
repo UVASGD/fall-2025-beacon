@@ -20,8 +20,32 @@ public class CameraController : MonoBehaviour
     {
         HandleMovement();
         HandleZoom();
-    }
+        HandleClickdown();
 
+        //also check for space bar
+    }
+    private bool mouseHeldDown = false;
+    private Vector3 mouseDownPosition;
+    private void HandleClickdown()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            //allow for dragging if the mouse button was also pressed down last frame
+            if (mouseHeldDown)
+            {
+                //draw the rectangle at four points
+            }
+            else
+            {
+                mouseHeldDown = true;
+                mouseDownPosition = Input.mousePosition;
+            }
+        }
+        else
+        {
+            mouseHeldDown = false;
+        }
+    }
     void HandleMovement()
     {
         Vector3 direction = Vector3.zero;

@@ -124,7 +124,16 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
         if (change < 0)
         {
             if (planetRenderer != null)
-                StartCoroutine(ColorFlash(GlobalSettings.i.HitFlashColor));
+            {
+                if (shield > 0)
+                {
+                    StartCoroutine(ColorFlash(GlobalSettings.i.ShieldHitColor)); //shield damage is displayed as a blue flash
+                }
+                else
+                {
+                    StartCoroutine(ColorFlash(GlobalSettings.i.HitFlashColor));
+                }
+            }
             float reducedDamage = Mathf.Min(-change, shield);
             shield -= reducedDamage;
             change += reducedDamage;

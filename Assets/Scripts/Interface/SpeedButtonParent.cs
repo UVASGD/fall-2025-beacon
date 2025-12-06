@@ -12,9 +12,22 @@ public class SpeedButtonParent : MonoBehaviour
     private void Awake()
     {
         TimeScaleEditor.onTimescaleChange += UpdateBGColors;
+        PlayerPause.onPlayerPause += CatchPlayerPause;
         UpdateBGColors(1);
     }
-
+    private void CatchPlayerPause(bool pausing)
+    {
+        if (pausing)
+        {
+            GlobalSettings.i.AdjustTimeScale(0);
+            UpdateBGColors(0);
+        }
+        else
+        {
+            GlobalSettings.i.AdjustTimeScale(1);
+            UpdateBGColors(1);
+        }
+    }
     private void UpdateBGColors(int index)
     {
         for(int i = 0; i < buttonBGImages.Count; i++)

@@ -2060,6 +2060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitFlashColor: {r: 1, g: 0.1745283, b: 0.1745283, a: 1}
+  shieldHitColor: {r: 0.3150943, g: 0.77882725, b: 1, a: 1}
   timeScale: 0
 --- !u!1 &697041740
 GameObject:
@@ -3023,7 +3024,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1442754209}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8378,6 +8379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitFlashColor: {r: 1, g: 0, b: 0, a: 1}
+  shieldHitColor: {r: 0, g: 0, b: 0, a: 0}
   timeScale: 1
 --- !u!4 &2004398819
 Transform:
@@ -8929,3 +8931,4 @@ SceneRoots:
   - {fileID: 233787618}
   - {fileID: 692918415}
   - {fileID: 2004398819}
+  - {fileID: 819779357}

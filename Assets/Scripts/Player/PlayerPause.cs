@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,17 +16,21 @@ public class PlayerPause : MonoBehaviour
         }
     }
 
+    public static event Action<bool> onPlayerPause;
+    private bool currentlyPaused => GlobalSettings.i.TimeScale == 0;
     public void TogglePause()
     {
-        if (Time.timeScale == 0f)
+        if (currentlyPaused)
         {
-            Time.timeScale = 1f;
+            Debug.Log("Unpausing from space bar");
             pausedIndicator.SetActive(false);
+            onPlayerPause.Invoke(false);
         }
         else
         {
-            Time.timeScale = 0f;
+            Debug.Log("Pausing the game");
             pausedIndicator.SetActive(true);
+            onPlayerPause.Invoke(true);
         }
     }
 }
