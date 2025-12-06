@@ -5831,6 +5831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1000
   maxHealth: 1000
+  maxOre: 20
   bar: {fileID: 489066201}
   planetRenderer: {fileID: 798354075}
 --- !u!114 &1516526868

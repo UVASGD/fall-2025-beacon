@@ -60,7 +60,7 @@ public class SpawnedAsteroid : MonoBehaviour
         //run a 15% chance, and if so, reduce asteroid max health and massively increase ore content.
         if(Random.Range(0f, 1f) > 0.85f)
         {
-            orbitalData.SetBaseOreContent(DEFAULTORECONTENT * 3);
+            orbitalData.SetBaseOreContent((int)orbitalData.BaseOreContent * 3);
             orbitalData.SetPlanetMaxHealth(orbitalData.PlanetMaxHealth / 2);
 
             //set the color to a yellow tint
