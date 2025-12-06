@@ -56,5 +56,15 @@ public class SpawnedAsteroid : MonoBehaviour
         //set the size of the buildableArea and its renderer
         buildableArea.size = Vector3.one * Mathf.Max(1, spriteIndex) * 4;
         buildableAreaRenderer.gameObject.transform.localScale = Vector3.one * spriteIndex;
+
+        //run a 15% chance, and if so, reduce asteroid max health and massively increase ore content.
+        if(Random.Range(0f, 1f) > 0.85f)
+        {
+            orbitalData.SetBaseOreContent(DEFAULTORECONTENT * 3);
+            orbitalData.SetPlanetMaxHealth(orbitalData.PlanetMaxHealth / 2);
+
+            //set the color to a yellow tint
+            mainRenderer.color = Color.yellow;
+        }
     }
 }

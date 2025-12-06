@@ -22,6 +22,6 @@ public class AsteroidVarieties : MonoBehaviour
         }
     }
 
-    //Asteroid names are pulled from this string array. Expanding to allow for more names to choose from/\.    
+    //Asteroid names are pulled from this string array. Expanding to allow for more names to choose from.    
     public string[] asteroidNames = {"Chixculub", "Ceres", "Phobos"};
 }

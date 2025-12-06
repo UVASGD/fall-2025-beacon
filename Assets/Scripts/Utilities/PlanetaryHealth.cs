@@ -9,6 +9,7 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
 
     [SerializeField] private float health = 100;
     [SerializeField] private float maxHealth = 100;
+    public float maxOre = 0;
     private float shield = 0;
     public Bar bar;
 
@@ -50,6 +51,9 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
             toDisplay += $"\nShield: {Mathf.RoundToInt(shield)}/{MaxShields()}";
         if (MaxMines() > 0)
             toDisplay += $"\nMines: {mines}/{MaxMines()}";
+        if(maxOre > 0)
+            toDisplay += $"\nOre Content: {maxOre}";
+                
         mInfoToDisplayController.infoText = toDisplay;
     }
 
@@ -178,6 +182,10 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
     public void SetMaxHealth(int newMaxHealth) //sets the max health of a PlanetaryHealth. Accessed by a homePlanetController when instantiating a new planet.
     {
         maxHealth = newMaxHealth;
+    }
+    public void SetMaxOre(int newMaxOre)
+    {
+        maxOre = newMaxOre;
     }
 
     public void TopOffHealth() //tops off the health of a PlanetaryHealth to its max. Useful when instantiating, as well as any possible fullheals throughout the game's flow.

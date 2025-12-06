@@ -55,6 +55,6 @@ public class OrbitalData //contains data for child orbits that are contained in 
 
     public void RandomizePhasePercent()
     {
-        phaseProgress = Mathf.RoundToInt(phaseLength * UnityEngine.Random.Range(0f, 1f));
+        phaseProgress = Mathf.RoundToInt(phaseLength * UnityEngine.Random.Range(-1f, 1f));
     }
 }

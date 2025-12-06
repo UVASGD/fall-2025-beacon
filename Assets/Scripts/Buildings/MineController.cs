@@ -11,23 +11,34 @@ public class MineController : MonoBehaviour
     void Awake()
     {
         mineControllers.Add(this);
-        GetAssociatedOrbitalData();        
+        SetMainPlanetStatus();
+        parentHealth = GetPlanetaryHealth();
     }
 
-    void GetAssociatedOrbitalData()
+    void SetMainPlanetStatus()
     {
         Collider[] hits = Physics.OverlapBox(transform.position, Vector3.one * 0.5f, Quaternion.identity, LayerMask.GetMask("BuildableArea"));
         //Debug.Log($"Name of hit collider: {hits[0].transform.name}");
         GameObject hitObject = hits[0].transform.parent.gameObject;
         onMainPlanet = hitObject.GetComponent<HomePlanetController>() != null;
     }
-
+    PlanetaryHealth parentHealth;
+    PlanetaryHealth GetPlanetaryHealth()
+    {
+        Collider[] hits = Physics.OverlapBox(transform.position, Vector3.one * 0.5f, Quaternion.identity, LayerMask.GetMask("BuildableArea"));
+        GameObject hitObject = hits[0].transform.parent.gameObject;
+        return hitObject.GetComponent<PlanetaryHealth>();
+    }
     public int GetMiningMoney()
     {
-        if(!onMainPlanet)
-            return Mathf.RoundToInt(SpawnedAsteroid.DEFAULTORECONTENT * 0.2f);
+        if (!onMainPlanet)
+        {
+            return Mathf.RoundToInt(parentHealth.maxOre* 0.2f);
+        }
         else
-            return Mathf.RoundToInt(SpawnedAsteroid.DEFAULTORECONTENT * 0.2f * 0.25f);
+        {
+            return Mathf.RoundToInt(parentHealth.maxOre * 0.2f * 0.25f);
+        }
     }
 
     private void OnDestroy()

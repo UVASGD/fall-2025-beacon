@@ -121,6 +121,7 @@ public class OrbitHandler : MonoBehaviour
         orbitTransforms.Add(HomePlanetController.i.transform);
         var planetHealth = orbitingBody.AddComponent<PlanetaryHealth>(); //storing planetHealth to remove additional calls to getComponent (as this is slow in realtime)
         planetHealth.SetMaxHealth(orbit.PlanetMaxHealth);
+        planetHealth.SetMaxOre((int)orbit.BaseOreContent);
         planetHealth.TopOffHealth();
 
         //instantiate a worldspace health bar
@@ -134,18 +135,6 @@ public class OrbitHandler : MonoBehaviour
         bool result = PlaceOnGrid(orbitingBody.transform, orbitTransforms, 50, 4, 10f, 30f, orbit.BuildingSize % 2 == 0);
 
         return;
-        /* commenting out this unreachable code
-        Vector3 center = this.transform.position;
-        float angle = orbit.phasePercent * 2 * Mathf.PI; //calculating the relative angle
-        Vector3 offset = new Vector3(
-                orbit.OrbitalDistance * Mathf.Cos(angle),
-                0f,
-                orbit.OrbitalDistance * Mathf.Sin(angle)
-        );
-        orbitingBody.AddComponent<PlanetaryHealth>().SetMaxHealth(orbit.PlanetMaxHealth);
-        orbitingBody.GetComponent<PlanetaryHealth>().TopOffHealth();
-        orbitingBody.transform.position = center + offset;
-        */
     }
     private float previousValue;
     private bool usePrevious = false;

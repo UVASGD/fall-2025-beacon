@@ -22,13 +22,11 @@ public class PlayerPause : MonoBehaviour
     {
         if (currentlyPaused)
         {
-            Debug.Log("Unpausing from space bar");
             pausedIndicator.SetActive(false);
             onPlayerPause.Invoke(false);
         }
         else
         {
-            Debug.Log("Pausing the game");
             pausedIndicator.SetActive(true);
             onPlayerPause.Invoke(true);
         }
