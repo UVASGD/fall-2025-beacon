@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 264284450200719578}
   - component: {fileID: 2728462498824965440}
   - component: {fileID: 2124443099521061771}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mech_Carrier_Hanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

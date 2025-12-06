@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3710099035112003758}
   - component: {fileID: 1128102617650107537}
   - component: {fileID: 5173116618258686424}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Martian_Railgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}

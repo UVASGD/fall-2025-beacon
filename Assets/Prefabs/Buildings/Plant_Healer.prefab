@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5259632627071841317}
   - component: {fileID: 7454850906723590041}
   - component: {fileID: 6005775438523928674}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plant_Healer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

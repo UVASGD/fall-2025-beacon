@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 767642900915881470}
   - component: {fileID: 519523455411780220}
   - component: {fileID: 7162658749289316390}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Human_Missile_Silo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

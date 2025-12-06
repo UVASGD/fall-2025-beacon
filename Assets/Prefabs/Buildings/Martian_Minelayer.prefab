@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3327587555811054323}
   - component: {fileID: 1219859667924523741}
   - component: {fileID: 7431483248531677177}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Martian_Minelayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 5899561041793546948}
   - component: {fileID: 3279065015757937173}
   - component: {fileID: 1855690308861420839}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mech_Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

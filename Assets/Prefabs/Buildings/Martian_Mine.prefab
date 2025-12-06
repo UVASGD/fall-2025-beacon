@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 3159533825843339382}
   - component: {fileID: 5298659033714580075}
   - component: {fileID: 3328180026917767287}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Martian_Mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -353,12 +353,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ab995b87f81d4468a8642a4c0838dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  associatedOrbitalData:
-    phaseLength: 0
-    phaseProgress: 0
-    orbitalDistance: 0
-    associatedPlanet: {fileID: 0}
-    counterClockwise: 1
-    baseOreContent: 0
-    planetMaxHealth: 0
-    buildingSize: 0

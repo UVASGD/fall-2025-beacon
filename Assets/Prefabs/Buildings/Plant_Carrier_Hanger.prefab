@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 4046596862594119724}
   - component: {fileID: 951826228737856984}
   - component: {fileID: 50076072472911694}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plant_Carrier_Hanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

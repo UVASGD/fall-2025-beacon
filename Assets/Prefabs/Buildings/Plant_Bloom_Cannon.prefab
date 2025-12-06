@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 4761357827950500426}
   - component: {fileID: 6117223046728447753}
   - component: {fileID: -8740660151144821852}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plant_Bloom_Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,6 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
-  cannonController: {fileID: 4761357827950500426}
   target: {fileID: 0}
 --- !u!114 &4761357827950500426
 MonoBehaviour:

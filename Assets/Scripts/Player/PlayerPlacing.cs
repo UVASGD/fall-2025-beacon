@@ -86,10 +86,10 @@ public class PlayerPlacing : MonoBehaviour
     }
     private bool hoveringBuildableArea = false;
     private Transform buildAreaTransform;
-    public bool ValidPlacingSpot()
+    public bool ValidPlacingSpot(Vector3 checkPos)
     {
-        //return Physics.CheckBox(checkPos, Vector3.one * cellSize / 2f, Quaternion.identity, LayerMask.GetMask("BuildableArea")) && !Physics.CheckBox(checkPos, Vector3.one * cellSize / 2f, Quaternion.identity, LayerMask.GetMask("BlockBuilding"));
-        return hoveringBuildableArea; //much cheaper computationally than using the Physics library
+        return Physics.CheckBox(checkPos, Vector3.one * cellSize / 2f, Quaternion.identity, LayerMask.GetMask("BuildableArea")) && !Physics.CheckBox(checkPos, Vector3.one * cellSize / 2f, Quaternion.identity, LayerMask.GetMask("BlockBuilding"));
+        //return hoveringBuildableArea; //much cheaper computationally than using the Physics library
     }
 
     private void HandlePlacing()
@@ -105,7 +105,7 @@ public class PlayerPlacing : MonoBehaviour
                 playerBuildings.RemoveAtIndex(selectedBuildingIndex);
                 SetSelectedIndex(-1);
             }
-            else if (ValidPlacingSpot())
+            else if (ValidPlacingSpot(placePosition))
             {
                 Building toBuild = playerBuildings.GetBuilding(selectedBuildingIndex);
 

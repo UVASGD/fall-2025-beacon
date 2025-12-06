@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 7250711809820766121}
   - component: {fileID: 4340607968788328029}
   - component: {fileID: 2396709694279468194}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plant_Mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}

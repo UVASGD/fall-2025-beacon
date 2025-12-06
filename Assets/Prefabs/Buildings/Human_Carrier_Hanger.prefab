@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 7878678487894857160}
   - component: {fileID: 2139111220245625417}
   - component: {fileID: 1857222675794934410}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Human_Carrier_Hanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

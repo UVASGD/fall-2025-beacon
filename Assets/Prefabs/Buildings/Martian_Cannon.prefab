@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 6217312681818380766}
   - component: {fileID: 3996210901853508918}
   - component: {fileID: 6989208990561796963}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Martian_Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

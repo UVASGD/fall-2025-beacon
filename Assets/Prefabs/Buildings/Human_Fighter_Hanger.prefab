@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2364273993477659464}
   - component: {fileID: 7738825904377157821}
   - component: {fileID: 3196256969278298207}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Human_Fighter_Hanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

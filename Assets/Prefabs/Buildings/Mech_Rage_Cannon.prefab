@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 8355960158298290742}
   - component: {fileID: 929663592881911395}
   - component: {fileID: 5315526052499036317}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mech_Rage_Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

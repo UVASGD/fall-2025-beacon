@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 4711377321362814148}
   - component: {fileID: 4920622825221682642}
   - component: {fileID: 4851498956362727266}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Human_Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

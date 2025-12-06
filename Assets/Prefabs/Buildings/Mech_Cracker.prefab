@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6587908256620392863}
   - component: {fileID: 1980554444641092371}
   - component: {fileID: 2299788116298498864}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mech_Cracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 4425896115081186153}
   - component: {fileID: 6890477786572998594}
   - component: {fileID: 4856808419520670656}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mech_Mine
   m_TagString: Untagged
   m_Icon: {fileID: 0}

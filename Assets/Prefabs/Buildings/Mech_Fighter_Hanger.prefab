@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1257392465597494208}
   - component: {fileID: 5255000183083860945}
   - component: {fileID: 1123262853288619356}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mech_Fighter_Hanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
