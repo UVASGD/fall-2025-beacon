@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meanCaptureChance: 0.3
   captureDeviation: 0.05
-  meanBodySize: 2.5
-  sizeDeviation: 1
+  meanBodySize: 3.5
+  sizeDeviation: 0.5
