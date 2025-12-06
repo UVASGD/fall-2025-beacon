@@ -14,6 +14,7 @@ public class FactionBase : ScriptableObject
     [SerializeField] List<Building> startingBuildings; //buildings that are available for free round 1 placement
     [SerializeField] List<Building> uniqueBuildings;
     [SerializeField] Planet homePlanet; //starting planet of the faction
+    [SerializeField] CaptureChance capChance;
 
     [Header("Selection Screen Stuff")]
     [TextArea(5, 10)]
@@ -36,4 +37,5 @@ public class FactionBase : ScriptableObject
     public Sprite LeaderPortrait => leaderPortrait;
     public string HoverText => hoverText;
     public bool HasMoon => hasMoon;
+    public CaptureChance CaptureChance => capChance;
 }

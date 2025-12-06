@@ -32,10 +32,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0648b64b36bdf654094994ff9bdce49d, type: 2}
   - {fileID: 11400000, guid: bdaf64128a0a9c74bbc279a843bd29dd, type: 2}
   homePlanet: {fileID: 11400000, guid: 2a391851e322faa499b8ee0e0920add1, type: 2}
-  factionOverview: Little is known of this faction. Their planet, which we call "Greenhouse-Mother",
-    is overwhelmed by trillions of sentient plants that are connected by a communal
-    nervous system. Their technology is primitive, but their zeal in spreading plantlife
-    more than makes up for it.
+  capChance: {fileID: 11400000, guid: 0695b3134acb40649a300a57d6a711a4, type: 2}
+  factionOverview: 'Little is known of this faction. Their planet, which we call
+    "Greenhouse-Mother", is overwhelmed by trillions of sentient plants that are
+    connected by a communal nervous system. Their technology is primitive, but their
+    zeal in spreading plantlife more than makes up for it.
+
+    The home planet of
+    the Greenhouse attracts few asteroids, but they are relatively large.'
   leaderPortrait: {fileID: 0}
   hoverText: 
   hasMoon: 0
