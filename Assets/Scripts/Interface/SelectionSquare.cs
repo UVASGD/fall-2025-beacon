@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,13 @@ public class SelectionSquare : MonoBehaviour
 
     void Update()
     {
-        if(WaveManager.Singleton.waveState == WaveState.Inactive) return; //don't continue if the wave is inactive
+        if(BeaconGrabber.Singleton.GrabbedBeacon != null)
+        {
+            selectionBox.gameObject.SetActive(false);
+            return;
+        }
+
+        if (WaveManager.Singleton.waveState == WaveState.Inactive) return; //don't continue if the wave is inactive
         // Mouse pressed → anchor the start
         if (Input.GetMouseButtonDown(0))
         {
@@ -36,7 +43,7 @@ public class SelectionSquare : MonoBehaviour
     private void UpdateBox()
     {
         Vector2 boxStart = startPos;
-        Vector2 boxEnd   = endPos;
+        Vector2 boxEnd = endPos;
 
         // Create the rectangle size
         Vector2 size = new Vector2(
@@ -53,11 +60,38 @@ public class SelectionSquare : MonoBehaviour
         selectionBox.sizeDelta = size;
     }
 
+    public static event Action<List<HumanController>> onObjectSelect;
     private void SelectObjects()
     {
+        List<HumanController> selectedShips = new List<HumanController>();
         Rect rect = GetScreenRect(startPos, endPos);
 
-        // insert selection code here
+        // Find all player ships
+        GameObject[] ships = GameObject.FindGameObjectsWithTag("PlayerShips");
+        foreach (GameObject ship in ships)
+        {
+            // Convert world → screen position
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(ship.transform.position);
+
+            // If object is behind the camera, skip (optional)
+            if (screenPos.z < 0)
+                continue;
+
+            // Check if inside the selection rectangle
+            if (rect.Contains(screenPos, true))
+            {
+                Debug.Log("Selected: " + ship.name);
+                // TODO: Mark ship as selected
+                // ship.GetComponent<YourShipController>().SetSelected(true);
+
+                selectedShips.Add(ship.GetComponent<HumanController>());
+            }
+        }
+
+        if(selectedShips.Count > 0)
+        {
+            onObjectSelect.Invoke(selectedShips);
+        }
     }
 
     private Rect GetScreenRect(Vector2 p1, Vector2 p2)

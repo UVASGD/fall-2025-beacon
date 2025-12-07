@@ -57,6 +57,7 @@ MonoBehaviour:
     baseOreContent: 0
     planetMaxHealth: 0
     buildingSize: 0
+    healthBar: {fileID: 0}
   mainRenderer: {fileID: 2202842222321673443}
   buildableArea: {fileID: 1154872866795385942}
   buildableAreaRenderer: {fileID: 7942876844526127968}

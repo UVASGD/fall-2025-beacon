@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class BeaconGrabber : MonoBehaviour
 {
+    public static BeaconGrabber Singleton;
     public Camera playerCamera;
     public LayerMask beaconLayer;
 
     [SerializeField]
     private GameObject grabbedBeacon;
-
+    public GameObject GrabbedBeacon => grabbedBeacon;
+    void Awake()
+    {
+        if(Singleton == null)
+        {
+            Singleton = this;
+        }
+    }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
