@@ -29,6 +29,9 @@ public class PlanetaryHealth : MonoBehaviour, IHealth
     void Awake()
     {
         planetaryHealths.Add(this);
+        if(GetComponent<HomePlanetController>() != null) {
+            GetComponent<PlanetaryHealth>().maxOre = FactionManager.i.GetPlayerFaction().FactionBase.OreMaxOfHomePlanet;
+        }
     }
 
     void Start()

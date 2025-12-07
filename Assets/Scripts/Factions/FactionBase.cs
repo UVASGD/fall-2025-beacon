@@ -22,6 +22,7 @@ public class FactionBase : ScriptableObject
     [SerializeField] Sprite leaderPortrait; //if we have character leaders for each faction
     [SerializeField] string hoverText; //when hovering over the faction icon on the selection menu, text box with this data pops up about their gameplay style
     [SerializeField] bool hasMoon;
+    [SerializeField] int oreMaxOfHomePlanet = 10;
 
     // Public getters
     public string FactionName => factionName;
@@ -37,5 +38,6 @@ public class FactionBase : ScriptableObject
     public Sprite LeaderPortrait => leaderPortrait;
     public string HoverText => hoverText;
     public bool HasMoon => hasMoon;
+    public float OreMaxOfHomePlanet => oreMaxOfHomePlanet;
     public CaptureChance CaptureChance => capChance;
 }

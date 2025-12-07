@@ -33,13 +33,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: da6588aeff577ea4eb82a8488e3ae7ea, type: 2}
   homePlanet: {fileID: 11400000, guid: adba0de451f533840834e5253282fe3b, type: 2}
   capChance: {fileID: 11400000, guid: dcbeca75b1a4fde4fa8e29a8cc042431, type: 2}
-  factionOverview: 'The Martians declared independence from Earth''s rule nearly
-    50 years ago. Their goals are galactic autonomy, at the cost of war with all
-    who stand in their way. Their status as a major planet is disregarded by most,
-    and the Martians will have a tough time surviving the coming war.
-
-    The small
-    stature of Mars attracts few asteroids.'
+  factionOverview: "The Martians declared independence from Earth's rule nearly 50
+    years ago. Their goals are galactic autonomy, at the cost of war with all who
+    stand in their way. \nThough the small stature of Mars attracts fewer asteroids,
+    it is rich in ore compared to other planets."
   leaderPortrait: {fileID: 21300000, guid: da354c3a2c0ff4a4da2cffa8c824bc58, type: 3}
   hoverText: Martian hover text
   hasMoon: 0
+  oreMaxOfHomePlanet: 25
